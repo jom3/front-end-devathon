@@ -1,0 +1,46 @@
+.footer__container {
+  margin-top: 1rem;
+  padding: 1rem 1rem;
+  background-color: #252627;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: start;
+}
+.footer__image {
+  width: 200px;
+  height: 200px;
+}
+.footer__section {
+  display: flex;
+  flex-direction: column;
+}
+.footer__section-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: white;
+}
+.footer__section-divider {
+  width: 100%;
+}
+.footer__section-item {
+  text-decoration: none;
+  color: rgb(196, 196, 196);
+}
+
+.footer__section-programacion {
+}
+.footer__section-about_us {
+}
+.footer__section-services {
+}
+.footer__section-contact {
+}
+
+.section {
+  padding: .5rem 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+}

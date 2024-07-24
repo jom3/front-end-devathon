@@ -1,0 +1,73 @@
+.meet-us__section {
+  background-color: rgba(179, 179, 179, 0.644);
+}
+.meet-us__item {
+  text-decoration: none;
+  font-weight: 500;
+  color: black;
+}
+.meet-us__item:hover{
+  animation: .1s linkHover ease-in-out forwards;
+}
+.meet-use__button {
+  border-radius: .2rem;
+}
+
+.navbar__container {
+  padding: .1rem 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: .1rem solid black;
+}
+.navbar-logo__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.navbar__logo {
+  width: 100px;
+  height: 100px;
+}
+.navbar__title {
+  font-size: 2rem;
+  font-weight: 800;
+  font-family: "Playfair Display", serif;
+}
+.navbar__nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.nav__item {
+  text-decoration: none;
+  text-align: center;
+  font-weight: 500;
+  color: black;
+}
+.nav-button__item{
+  background-color: brown;
+  color: white;
+  padding: .3rem 1.5rem;
+  border-radius: .3rem;
+}
+.empty__span{
+  width: 212px;
+}
+.nav__item:hover{
+  animation: .1s linkHover ease-in-out forwards;
+}
+.footer__section-item:hover{
+  animation: .1s linkHoverFooter ease-in-out forwards;
+}
+
+.section {
+  padding: .5rem 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+}
