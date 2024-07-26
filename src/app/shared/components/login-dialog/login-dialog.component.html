@@ -1,0 +1,39 @@
+<div class="login__container">
+  <div class="login-logo__container">
+    <img src="/images/logo.svg" alt="logo">
+    <span>SLOW <br> MOVIE</span>
+  </div>
+
+  <form [formGroup]="loginForm" (submit)="onLogin()" class="login__form">
+    <mat-form-field>
+      <mat-label>Usuario</mat-label>
+      <input
+      matInput
+      formControlName="username"
+      required
+      class="login__form-input"
+      />
+      @if (loginForm.controls['username'].invalid) {
+        <mat-error>Usuario es requerido</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Contraseña</mat-label>
+    <input
+    matInput
+    formControlName="password"
+    required
+    class="login__form-input"
+    />
+    @if (loginForm.controls['password'].invalid) {
+      <mat-error>Contraseña requerida</mat-error>
+    }
+  </mat-form-field>
+  <button mat-flat-button type="submit">Login</button>
+</form>
+<mat-divider></mat-divider>
+<div class="login__form-links">
+  <a href="#">¿Olvidaste la contraseña?</a>
+  <a href="#">Regístrate</a>
+</div>
+</div>
