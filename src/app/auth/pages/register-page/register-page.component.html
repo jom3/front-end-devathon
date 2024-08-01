@@ -1,0 +1,128 @@
+<div class="register-page__container">
+  <section class="register-text__bonus">
+    <p class="bonus__text">
+      Descubre <br />
+      todas las ventajas al ser miembro!
+      <br />
+      <br />
+      <span>Regístrate ahora</span>
+    </p>
+  </section>
+  <section class="register__container">
+    <form
+      [formGroup]="registerForm"
+      (submit)="onRegister()"
+      class="register__form"
+    >
+      <span class="register__title">Datos personales</span>
+      <hr class="divider" />
+      <div class="form-input__container">
+        <div>
+          <p>Nombre Completo<span>*</span></p>
+          <input
+            type="text"
+            class="input-form"
+            formControlName="fullName"
+            required
+          />
+          @if (this.registerForm.controls.fullName.getError('required') && this.registerForm.get('fullName')?.touched) {
+          <p class="form-input__error">El campo es requerido</p>
+          }
+        </div>
+        <div>
+          <p>Teléfono</p>
+          <input type="text" class="input-form" formControlName="phone" />
+        </div>
+      </div>
+      <div class="form-input__container">
+        <div>
+          <p>País</p>
+          <input type="text" class="input-form" formControlName="country" />
+        </div>
+        <div>
+          <p>Dirección</p>
+          <input type="text" class="input-form" formControlName="address" />
+        </div>
+      </div>
+      <span class="register__title register__title-down">Datos personales</span>
+      <hr class="divider" />
+      <div class="form-input__container">
+        <div>
+          <p>Correo electrónico<span>*</span></p>
+          <input
+            type="email"
+            class="input-form"
+            formControlName="email"
+            required
+          />
+          @if (this.registerForm.controls.email.getError('required') && this.registerForm.controls.email.touched) {
+            <p class="form-input__error">El campo es requerido</p>
+          }
+        </div>
+        <div>
+          <p>Repita su correo electrónico<span>*</span></p>
+          <input
+            type="email"
+            class="input-form"
+            formControlName="confirmEmail"
+            required
+          />
+          @if (this.registerForm.controls.confirmEmail.getError('required') && this.registerForm.controls.confirmEmail.touched) {
+            <p class="form-input__error">El campo es requerido</p>
+          }
+          @if (this.registerForm.controls.confirmEmail.getError('emailMismatch') && registerForm.get('confirmEmail')?.touched) {
+            <p class="form-input__error">Los correos no son similares</p>
+          }
+        </div>
+      </div>
+      <div class="form-input__container">
+        <div>
+          <p>Contraseña<span>*</span></p>
+          <input
+            type="password"
+            class="input-form"
+            formControlName="password"
+            required
+          />
+          @if (this.registerForm.controls.password.getError('required') && this.registerForm.controls.password.touched && !this.registerForm.controls.password.dirty) {
+            <p class="form-input__error">El campo es requerido</p>
+          }
+          @if (this.registerForm.controls.password.errors?.['minlength'] && this.registerForm.controls.password.dirty) {
+            <p class="form-input__error">El campo require 8 caracteres como mínimo</p>
+          }
+          @if (this.registerForm.controls.password.errors?.['maxlength'] && this.registerForm.controls.password.dirty) {
+            <p class="form-input__error">El campo require 20 caracteres como máximo</p>
+          }
+          @if (this.registerForm.controls.password.getError('passwordStrength') && this.registerForm.controls.password.dirty) {
+            <p class="form-input__error">La contraseña debe tener al menos: una mayúscula, una minúscula, un carácter especial</p>
+          }
+        </div>
+        <div>
+          <p>Repita su contraseña<span>*</span></p>
+          <input
+            type="password"
+            class="input-form"
+            formControlName="confirmPassword"
+            required
+          />
+          @if (this.registerForm.controls.confirmPassword.getError('required') && this.registerForm.controls.confirmPassword.touched) {
+            <p class="form-input__error">El campo es requerido</p>
+          }
+          @if (this.registerForm.controls.confirmPassword.getError('passwordMismatch') && registerForm.get('confirmPassword')?.touched) {
+            <p class="form-input__error">Las contraseñas no son similares</p>
+          }
+        </div>
+      </div>
+      <div class="checkbox__container">
+        <div class="checkbox__agree">
+          <p>Acepto el registro de esta información<span>*</span></p>
+          <input type="checkbox" formControlName="IsChecked" required />
+        </div>
+        @if (this.registerForm.controls.IsChecked.getError('required') && this.registerForm.controls.IsChecked.touched ) {
+          <p class="form-input__error">El campo es requerido</p>
+        }
+      </div>
+      <button type="submit">Registrarse</button>
+    </form>
+  </section>
+</div>
