@@ -1,0 +1,19 @@
+.custom-message-card__container{
+  display: flex;
+  gap: 1rem;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: .5rem 1rem;
+  font-weight: 600;
+}
+
+.info-message{
+  color: #ffd700;
+}
+.success-message{
+  color: #008000;
+}
+.warn-message{
+  color: red;
+}
