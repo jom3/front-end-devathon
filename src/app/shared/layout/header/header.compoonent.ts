@@ -1,5 +1,6 @@
 import { Component, effect, inject, signal } from '@angular/core';
-import { MatDialog, MatDialogClose, MatDialogModule } from '@angular/material/dialog';
+import { SharedModule } from "../../shared.module";
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { LoginDialogComponent } from '../../../auth';
 import { Router, RouterLink } from '@angular/router';
 import { JwtService } from '../../services';
@@ -9,7 +10,7 @@ import { JwtService } from '../../services';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
   standalone: true,
-  imports: [MatDialogModule,MatDialogClose, RouterLink],
+  imports: [SharedModule, MatDialogModule, RouterLink],
 })
 export class HeaderComponent {
   public isLogged = signal<boolean>(false)
