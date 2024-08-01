@@ -1,0 +1,25 @@
+<div class="custom-message-card__container">
+  @switch (data.type) {
+    @case ('INFO') {
+      <img src="/icons/info-circle.svg" alt="info-circle">
+    }
+    @case ('WARN') {
+      <img src="/icons/error-circle.svg" alt="info-circle">
+    }
+    @case ('SUCCESS') {
+      <img src="/icons/success-circle.svg" alt="info-circle">
+    }
+  }
+  @switch (data.type) {
+    @case ('INFO') {
+      <span class="info-message">{{ data.message }}</span>
+    }
+    @case ('WARN') {
+      <span class="warn-message">{{ data.message }}</span>
+    }
+    @case ('SUCCESS') {
+      <span class="success-message">{{ data.message }}</span>
+    }
+  }
+
+</div>
