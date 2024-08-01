@@ -5,17 +5,19 @@ import { map } from 'rxjs/operators';
 import {
   MoviesService,
   imagesBaseUrl,
-} from '../../shared/services/movies.sertice';
+} from '../../shared/services/movies.service';
 
-import { Actor } from '../../features/movies/models/credit';
-import { Movie } from '../../features/movies/models/movie';
-import { Video } from '../../features/movies/models/video';
-import { VideoComponent } from '../../video/components/video/video.component';
+import { AsyncPipe, CurrencyPipe, DatePipe } from '@angular/common';
+import { VideoComponent } from '../../features/video/components/video/video.component';
+import { Actor } from '../../shared/models/credit';
+import { Movie } from '../../shared/models/movie';
+import { Video } from '../../shared/models/video';
+import { MaterialModule } from '../../shared/modules/material/material.module';
 
 @Component({
   selector: 'app-show-movie',
   standalone: true,
-  imports: [VideoComponent],
+  imports: [VideoComponent, AsyncPipe, DatePipe, CurrencyPipe, MaterialModule],
   templateUrl: './show-movie.component.html',
   styleUrl: './show-movie.component.css',
 })

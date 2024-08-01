@@ -1,1 +1,15 @@
-<h1>Movie Works</h1>
+<mat-card class="la-card" routerLink="/show-movie/{{ movie.id }}">
+  <mat-card-header class="la-card__header">
+    <mat-card-subtitle> {{ movie.release_date | date }}</mat-card-subtitle>
+    <mat-card-subtitle> Rating: {{ movie.vote_average }}</mat-card-subtitle>
+    <mat-card-title>{{ movie.title }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="la-card__content">
+    @if(movie.poster_path){
+    <img
+      [src]="imagesBaseUrl + '/w185/' + movie.poster_path"
+      [alt]="movie.title"
+    />
+    }
+  </mat-card-content>
+</mat-card>

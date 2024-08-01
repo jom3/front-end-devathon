@@ -1,19 +1,28 @@
-import { NgForOf } from '@angular/common';
+import { DatePipe, NgForOf } from '@angular/common';
 import { Component, DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { RouterModule } from '@angular/router';
 import { MovieComponent } from '../../features/movie/components/movie/movie.component';
-import { Movie } from '../../features/movies/models/movie';
+import { Movie } from '../../shared/models/movie';
 import { MaterialModule } from '../../shared/modules/material/material.module';
-import { MoviesService } from '../../shared/services/movies.sertice';
+import {
+  imagesBaseUrl,
+  MoviesService,
+} from '../../shared/services/movies.service';
 
 @Component({
   selector: 'app-movies',
   standalone: true,
-  imports: [MovieComponent, MaterialModule, NgForOf],
+  imports: [MovieComponent, MaterialModule, RouterModule, NgForOf, DatePipe],
   templateUrl: './movies-page.component.html',
   styleUrl: './movies-page.component.css',
 })
 export class MoviesPageComponent {
+  public imagesBaseUrl = imagesBaseUrl;
+  date = new Date();
+  monthName = this.date.toLocaleString('default', { month: 'short' });
+  year = this.date.getFullYear();
+
   private moviesService = inject(MoviesService);
   private pageNumber = 1;
   private destroyRef = inject(DestroyRef);
@@ -28,21 +37,6 @@ export class MoviesPageComponent {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((data) => {
         this.moviesResults = data.results;
-      });
-  }
-
-  onScroll(): void {
-    this.pageNumber++;
-    console.log('scrolled!!');
-
-    this.moviesObs$ = this.moviesService.fetchMoviesByType(
-      'popular',
-      this.pageNumber
-    );
-    this.moviesObs$
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((data) => {
-        this.moviesResults = this.moviesResults.concat(data.results);
       });
   }
 }

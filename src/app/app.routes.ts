@@ -3,7 +3,7 @@ import { ShowMovieComponent } from './pages/show-movie/show-movie.component';
 
 export const routes: Routes = [
   {
-    path: '',
+    path: 'movies',
     loadComponent: () =>
       import('./pages/movies/movies-page.component').then(
         (c) => c.MoviesPageComponent
@@ -15,7 +15,7 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: 'movies',
     pathMatch: 'full',
   },
 ];
