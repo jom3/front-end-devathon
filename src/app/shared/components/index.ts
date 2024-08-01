@@ -1,1 +1,1 @@
-export {LoginDialogComponent} from './login-dialog/login-dialog.component'
+export {CustomMessageCardComponent} from './custom-message-card/custom-message-card.component'
