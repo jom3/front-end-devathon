@@ -6,15 +6,19 @@
 
   <form [formGroup]="loginForm" (submit)="onLogin()" class="login__form">
     <mat-form-field>
-      <mat-label>Usuario</mat-label>
+      <mat-label>Email</mat-label>
       <input
       matInput
       formControlName="username"
       required
+      type="email"
       class="login__form-input"
       />
-      @if (loginForm.controls['username'].invalid) {
-        <mat-error>Usuario es requerido</mat-error>
+      @if (this.loginForm.controls.username.getError('required') && this.loginForm.controls.username.touched) {
+        <mat-error>Email es requerido</mat-error>
+      }
+      @if (this.loginForm.controls.username.getError('email')) {
+        <mat-error>El email no es valido</mat-error>
       }
     </mat-form-field>
     <mat-form-field>
@@ -23,17 +27,18 @@
     matInput
     formControlName="password"
     required
+    type="password"
     class="login__form-input"
     />
-    @if (loginForm.controls['password'].invalid) {
+    @if (this.loginForm.controls.password.getError('required') && this.loginForm.controls.password.touched) {
       <mat-error>Contraseña requerida</mat-error>
     }
   </mat-form-field>
-  <button mat-flat-button type="submit">Login</button>
+  <button mat-flat-button [disabled]="this.loginForm.invalid" [mat-dialog-close]="true" type="submit">Login</button>
 </form>
 <mat-divider></mat-divider>
 <div class="login__form-links">
   <a href="#">¿Olvidaste la contraseña?</a>
-  <a href="#">Regístrate</a>
+  <a [routerLink]="['/auth/register']" [mat-dialog-close]="true">Regístrate</a>
 </div>
 </div>
