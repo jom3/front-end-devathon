@@ -1,0 +1,7 @@
+<div class="container">
+  <mat-grid-list cols="5" gutterSize="10px">
+    <mat-grid-tile *ngFor="let movie of moviesResults; track: movie">
+      <app-movie [movie]="movie"></app-movie>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

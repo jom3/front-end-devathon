@@ -1,15 +1,11 @@
 import { NgModule } from '@angular/core';
-import {MatButtonModule} from '@angular/material/button';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 //* you must add angular modules in imports and exports
 
 @NgModule({
   declarations: [],
-  imports: [
-    MatButtonModule,
-  ],
-  exports:[
-    MatButtonModule,
-  ]
+  imports: [MatGridListModule],
+  exports: [MatGridListModule],
 })
-export class MaterialModule { }
+export class MaterialModule {}
