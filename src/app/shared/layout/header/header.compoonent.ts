@@ -10,12 +10,12 @@ import { JwtService } from '../../services';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
   standalone: true,
-  imports: [[SharedModule, MatDialogModule, RouterLink],
+  imports: [SharedModule, MatDialogModule, RouterLink],
 })
-            
+
 export class HeaderComponent {
   public isLogged = signal<boolean>(false)
-  
+
   readonly dialog = inject(MatDialog);
   readonly jwtSvc = inject(JwtService)
   readonly router = inject(Router)
