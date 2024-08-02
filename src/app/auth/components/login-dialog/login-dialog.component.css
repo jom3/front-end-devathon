@@ -1,0 +1,33 @@
+.login__container{
+  padding: 1rem 2rem;
+}
+.login-logo__container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.login-logo__container>img{
+  width: 100px;
+}
+.login-logo__container>span{
+  font-size: 1.3rem;
+}
+.login__form{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.login__form>button{
+  margin: 1rem 0;
+}
+.login__form-links{
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.login__form-links>a{
+  color: blue;
+  text-decoration: none;
+}

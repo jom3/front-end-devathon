@@ -1,0 +1,35 @@
+.work-us__section {
+  padding: 3rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.work-us__container {
+  justify-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: last baseline;
+}
+.work-us__text {
+  width: 300px;
+}
+.work-us__button {
+  cursor: pointer;
+  padding: .5rem 1.5rem;
+  border: none;
+  border-radius: .3rem;
+  font-size: 1rem;
+  color: white;
+  font-weight: 600;
+  background-color: red;
+}
+.work-us__button:hover{
+  animation: .3s workUsButton ease-in-out forwards;
+}
+
+@keyframes workUsButton{
+  to{
+    background-color: rgb(255, 86, 86);
+  }
+}

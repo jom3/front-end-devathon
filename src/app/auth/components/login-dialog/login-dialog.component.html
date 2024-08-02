@@ -1,0 +1,44 @@
+<div class="login__container">
+  <div class="login-logo__container">
+    <img src="/images/logo.svg" alt="logo">
+    <span>SLOW <br> MOVIE</span>
+  </div>
+
+  <form [formGroup]="loginForm" (submit)="onLogin()" class="login__form">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input
+      matInput
+      formControlName="username"
+      required
+      type="email"
+      class="login__form-input"
+      />
+      @if (this.loginForm.controls.username.getError('required') && this.loginForm.controls.username.touched) {
+        <mat-error>Email es requerido</mat-error>
+      }
+      @if (this.loginForm.controls.username.getError('email')) {
+        <mat-error>El email no es valido</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Contraseña</mat-label>
+    <input
+    matInput
+    formControlName="password"
+    required
+    type="password"
+    class="login__form-input"
+    />
+    @if (this.loginForm.controls.password.getError('required') && this.loginForm.controls.password.touched) {
+      <mat-error>Contraseña requerida</mat-error>
+    }
+  </mat-form-field>
+  <button mat-flat-button [disabled]="this.loginForm.invalid" [mat-dialog-close]="true" type="submit">Login</button>
+</form>
+<mat-divider></mat-divider>
+<div class="login__form-links">
+  <a href="#">¿Olvidaste la contraseña?</a>
+  <a [routerLink]="['/auth/register']" [mat-dialog-close]="true">Regístrate</a>
+</div>
+</div>
