@@ -48,29 +48,14 @@ export class MoviesPageComponent {
 
   constructor(public dialog: MatDialog) {}
   ngOnInit() {
-    // this.moviesObs$
-    //   .pipe(
-    //     catchError((error) => {
-    //       this.error = true;
-    //       this.onError(error);
-    //       return throwError(() => error);
-    //     }),
-    //     takeUntilDestroyed(this.destroyRef)
-    //   )
-    //   .subscribe((data: any) => {
-    //     this.loaded = true;
-    //     this.moviesResults = data.results;
-    //   });
-
     this.moviesObs$
       .pipe(
         map((value) => value),
         tap((data) => console.log('data', data.results)),
         delay(1500),
         catchError((err) => {
-          console.log('caught mapping error and rethrowing', err);
           let error = err.message;
-          this.onError('Eror al cargar los datos. ' + error);
+          this.onError('Error al cargar los datos. ' + error);
           return of([]);
         }),
         catchError((err) => {

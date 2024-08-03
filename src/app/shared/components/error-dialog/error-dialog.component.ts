@@ -16,8 +16,6 @@ export class ErrorDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
-  ngOnInit() {}
-
   onConfirm(result: boolean): void {
     this.dialogRef.close(result);
   }
