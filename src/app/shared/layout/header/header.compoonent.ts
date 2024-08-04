@@ -4,16 +4,18 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { LoginDialogComponent } from '../../../auth';
 import { Router, RouterLink } from '@angular/router';
 import { JwtService } from '../../services';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
   standalone: true,
-  imports: [SharedModule, MatDialogModule, RouterLink],
+  imports: [SharedModule, MatDialogModule, RouterLink, NgClass],
 })
 
 export class HeaderComponent {
+  public isHidden = signal<boolean>(true)
   public isLogged = signal<boolean>(false)
 
   readonly dialog = inject(MatDialog);
@@ -29,6 +31,7 @@ export class HeaderComponent {
   }
 
   openLoginDialog() {
+    this.isHidden.set(true)
     this.dialog.open(LoginDialogComponent,{
       width:'400px',
     });
@@ -36,6 +39,11 @@ export class HeaderComponent {
 
   onLogout(){
     this.jwtSvc.removeToken()
+    this.isHidden.set(true)
     this.router.navigate(['/'])
+  }
+
+  onToggle(){
+    this.isHidden.set(!this.isHidden())
   }
 }
