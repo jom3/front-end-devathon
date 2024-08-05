@@ -1,15 +1,14 @@
-<mat-card class="la-card" routerLink="/movies/showmovie/{{ movie.id }}">
-  <mat-card-header class="la-card__header">
-    <mat-card-subtitle> {{ movie.release_date | date }}</mat-card-subtitle>
-    <mat-card-subtitle> Rating: {{ movie.vote_average }}</mat-card-subtitle>
-    <mat-card-title>{{ movie.title }}</mat-card-title>
-  </mat-card-header>
-  <mat-card-content class="la-card__content">
-    @if(movie.poster_path){
-    <img
-      [src]="imagesBaseUrl + '/w185/' + movie.poster_path"
-      [alt]="movie.title"
-    />
+  <div class="movie__desc">
+    <div class="movie__details">
+      <span class="card__release-date">{{ movie().release_date | date }}</span>
+      <span class="card__rating">Rating: {{ movie().vote_average }}</span>
+    </div>
+  </div>
+  <picture class="card__picture">
+    @if (movie().poster_path) {
+      <img [src]="imagesBaseUrl + '/w300/' + movie().poster_path" alt="{{movie().title}}" class="card__image"/>
+    }@else {
+      <img src="\images\no-poster-available.jpg" alt="" class="card__image"/>
     }
-  </mat-card-content>
-</mat-card>
+  </picture>
+  <span class="card__title">{{ movie().title }}</span>

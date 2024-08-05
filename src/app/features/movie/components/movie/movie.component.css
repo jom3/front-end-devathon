@@ -1,19 +1,12 @@
-.la-card {
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.movie__details{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: space-evenly;
 }
-
-img {
-  height: auto;
-  width: 350px;
-  max-width: 100%;
-  max-height: 100%;
+.card__title {
+  font-weight: 500;
 }
-
-.la-card__content img {
-  max-width: 100%;
-  max-height: 100%;
-  margin-bottom: 10px;
+.card__picture {
+  padding: 0 .3rem;
 }
