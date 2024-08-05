@@ -1,10 +1,10 @@
 .register-page__container {
-  padding: 5rem 3rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 3rem;
 }
 .register-text__bonus {
+  margin-top: 1rem;
   background-image: url('/images/fondo.jpg');
   height: auto;
   object-fit: cover;
@@ -14,6 +14,7 @@
   align-items: center;
 }
 .bonus__text {
+  text-align: center;
   padding: 10px;
   font-size: 1.2rem;
 }
@@ -24,33 +25,45 @@
   font-weight: 600;
 }
 .register__container {
+  margin: 1rem 0;
   width: 100%;
-  padding: 1rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .register__form {
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .register__title {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 500;
 }
 .register__title-down {
   margin-top: 1rem;
 }
 .divider {
-  width: 100%;
+  width: 90%;
+  margin-bottom: 1rem;
 }
 .form-input__container {
+  width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 1rem;
   margin-bottom: 1rem;
 }
 .form-input__container > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  height: 100px;
 }
 .form-input__container > div > p {
   font-size: 1.2rem;
@@ -70,17 +83,19 @@
 }
 .checkbox__container {
   margin-top: 3.5rem;
+  margin-left: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 .checkbox__agree {
+  width: 100%;
   gap: 1rem;
   display: flex;
   flex-direction: row-reverse;
-  align-items: center;
   justify-items: center;
+  align-items: center;
 }
 .checkbox__agree > input {
   transform: scale(1.3);
@@ -97,4 +112,16 @@ button {
 }
 button:hover {
   background-color: #3f6486;
+}
+
+@media (min-width:768px) {
+  .form-input__container{
+    flex-direction: row;
+  }
+}
+@media (min-width:1024px) {
+  .register-page__container{
+    flex-direction: row;
+    gap: .5rem;
+  }
 }
