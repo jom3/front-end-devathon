@@ -1,53 +1,86 @@
-import { Component, Input, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import {
-  MoviesService,
-  imagesBaseUrl,
-} from '../../shared/services/movies.service';
+import { Component, inject, input, signal } from '@angular/core';
+import { MoviesService } from '../../shared/services/movies.service';
 
-import { AsyncPipe, CurrencyPipe, DatePipe } from '@angular/common';
+import { AsyncPipe, CurrencyPipe, DatePipe, SlicePipe } from '@angular/common';
 import { VideoComponent } from '../../features/video/components/video/video.component';
-import { Actor } from '../../shared/models/credit';
-import { Movie } from '../../shared/models/movie';
-import { Video } from '../../shared/models/video';
 import { MaterialModule } from '../../shared/modules/material/material.module';
+import { environment } from '../../../environments/environment.development';
+import { Movie } from '../../shared/models/movie.interface';
+import { Cast } from '../../shared/models/credit.interface';
+import { Video } from '../../shared/models/video.interface';
+import { MovieComponent } from '../../features/movie/components/movie/movie.component';
+
+const initialMovieState = {
+  adult:false,
+    backdrop_path:'',
+    genre_ids:[],
+    id:0,
+    original_language:'',
+    original_title:'',
+    overview:'',
+    popularity:0,
+    poster_path:'',
+    release_date: new Date(),
+    title:'',
+    video:true,
+    vote_average:0,
+    vote_count:0
+}
 
 @Component({
   selector: 'app-show-movie',
   standalone: true,
-  imports: [VideoComponent, AsyncPipe, DatePipe, CurrencyPipe, MaterialModule],
+  imports: [VideoComponent, AsyncPipe, DatePipe, CurrencyPipe, SlicePipe, MovieComponent],
   templateUrl: './show-movie.component.html',
   styleUrl: './show-movie.component.css',
 })
 export class ShowMovieComponent {
-  @Input() movieId: string = '';
-  private moviesService = inject(MoviesService);
-  public movieObs$!: Observable<Movie>;
-  public movieCastObs$!: Observable<Actor[]>;
-  public movieVideosObs$!: Observable<Video[]>;
-  public similarMoviesObs$!: Observable<Movie[]>;
-  public imagesBaseUrl = imagesBaseUrl;
-  private activatedRouter = inject(ActivatedRoute);
-  public showVideo = false;
+  movieId = input<number>()
+
+  private readonly moviesSvc = inject(MoviesService);
+
+  public movie = signal<Movie>(initialMovieState)
+  public movieCast = signal<Cast[]>([]);
+  public movieVideos = signal<Video[]>([]);
+  public similarMovies = signal<Movie[]>([]);
+  public imagesBaseUrl = environment.imagesBaseUrl;
+  public showVideo = signal<boolean>(false);
 
   ngOnInit() {
-    this.activatedRouter.params
-      .pipe(map((p) => p['movieId']))
-      .subscribe((id) => {
-        console.log(id);
-        this.movieObs$ = this.moviesService.fetchMovieById(id);
-        this.movieCastObs$ = this.moviesService.fetchMovieCast(id);
-        this.movieVideosObs$ = this.moviesService.fetchMovieVideos(id);
-        this.similarMoviesObs$ = this.moviesService.fetchSimilarMovies(id);
-      });
+    this.getMovieById(this.movieId()!)
+    this.getCastById(this.movieId()!)
+    this.getMovieVideos(this.movieId()!)
+    this.getSimilarMovies(this.movieId()!)
+  }
+
+  getMovieById(id:number){
+    this.moviesSvc.getMovieById(id).subscribe({
+      next:r=>this.movie.set(r)
+    })
+  }
+
+  getCastById(id:number){
+    this.moviesSvc.getMovieCast(id).subscribe({
+      next:r=>this.movieCast.set(r)
+    })
+  }
+
+  getMovieVideos(id:number){
+    this.moviesSvc.getMovieVideos(id).subscribe({
+      next:r=>this.movieVideos.set(r)
+    })
+  }
+
+  getSimilarMovies(id:number){
+    this.moviesSvc.getSimilarMovies(id).subscribe({
+      next:r=>this.similarMovies.set(r)
+    })
   }
 
   openVideo() {
-    this.showVideo = true;
+    this.showVideo.set(true);
   }
   closeVideo() {
-    this.showVideo = false;
+    this.showVideo.set(false);
   }
 }

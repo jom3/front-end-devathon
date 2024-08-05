@@ -1,33 +1,56 @@
-.avatar {
-  width: 150px;
-  height: 150px;
-  font-size: 40px;
-}
-
-video {
-  border: 5px groove darkblue;
-  padding: 30px;
-  width: auto;
-  height: auto;
-}
-
-.poster {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-  height: 550px;
-}
-
-.la-card__header {
+.container{
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: large;
+}
+.movie__card{
+  margin: 3rem auto;
+  max-width: 400px;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.card__title{
+  font-size: 2rem;
+  text-align: center;
+  line-height: 30px;
+}
+.movie__desc{
+  max-width: 768px;
+  padding: 1rem .3rem;
+}
+.video__section{
+  width: 90%;
+  padding: 1rem;
 }
 
-mat-card-subtitle {
-  font-size: large;
-  font-weight: bold;
+.cast__title{
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.cast__section{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0 .3rem;
+  justify-content: space-evenly;
+}
+.cast__image{
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+}
+
+@media (min-width:1024px) {
+  .video__section{
+    max-width: 768px;
+  }
+  .cast__section{
+    max-width: 768px;
+  }
 }
