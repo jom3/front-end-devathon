@@ -1,9 +1,11 @@
-<h1>Peliculas en cartelera, {{ monthName }} {{ year }}</h1>
+<div class="container">
+  <h1 class="movies__title">Peliculas en cartelera, {{ monthName }} {{ year }}</h1>
+  <div class="movies__container">
+    @for(movie of movies() | slice:0:10; track movie.id){
+      <div class="movie__card" routerLink="/movies/showmovie/{{ movie.id }}">
+        <movie-card [movie]="movie"/>
+      </div>
+    }
+  </div>
+</div>
 
-<mat-grid-list cols="4">
-  @for(movie of moviesResults; track movie.id){
-  <mat-grid-tile>
-    <app-movie [movie]="movie"></app-movie>
-  </mat-grid-tile>
-  }
-</mat-grid-list>

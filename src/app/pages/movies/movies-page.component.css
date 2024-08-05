@@ -1,3 +1,36 @@
-h1 {
-  text-align: center;
+.container{
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.movies__title {
+  font-size: 2rem;
+  margin-left: 1rem;
+}
+.movies__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+.movie__card {
+  display: flex;
+  background-color: #cecece;
+  flex-direction: column;
+  padding: 1rem .5rem;
+  border-radius: 1rem;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+}
+
+@media (min-width:768px) {
+  .movies__container{
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
 }

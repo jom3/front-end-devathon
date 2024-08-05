@@ -1,42 +1,39 @@
-import { DatePipe, NgForOf } from '@angular/common';
-import { Component, DestroyRef, inject } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { DatePipe, SlicePipe } from '@angular/common';
+import { Component, inject, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MovieComponent } from '../../features/movie/components/movie/movie.component';
-import { Movie } from '../../shared/models/movie';
-import { MaterialModule } from '../../shared/modules/material/material.module';
+import { Movie } from '../../shared/models/movie.interface';
 import {
-  imagesBaseUrl,
   MoviesService,
 } from '../../shared/services/movies.service';
+import { environment } from '../../../environments/environment.development';
 
 @Component({
   selector: 'app-movies',
   standalone: true,
-  imports: [MovieComponent, MaterialModule, RouterModule, NgForOf, DatePipe],
+  imports: [MovieComponent, RouterModule, DatePipe, SlicePipe, MovieComponent],
   templateUrl: './movies-page.component.html',
   styleUrl: './movies-page.component.css',
 })
 export class MoviesPageComponent {
-  public imagesBaseUrl = imagesBaseUrl;
+  public movies = signal<Movie[]>([])
+  public imagesBaseUrl = environment.imagesBaseUrl;
+
+  private moviesSvc = inject(MoviesService);
+
   date = new Date();
   monthName = this.date.toLocaleString('default', { month: 'short' });
   year = this.date.getFullYear();
 
-  private moviesService = inject(MoviesService);
-  private pageNumber = 1;
-  private destroyRef = inject(DestroyRef);
-  public moviesObs$ = this.moviesService.fetchMoviesByType(
-    'popular',
-    this.pageNumber
-  );
-  public moviesResults: Movie[] = [];
 
   ngOnInit() {
-    this.moviesObs$
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((data) => {
-        this.moviesResults = data.results;
-      });
+    this.getMoviesByType('popular');
+  }
+
+  getMoviesByType(type:string){
+    this.moviesSvc.getMoviesByType(type).subscribe({
+      next:r=> this.movies.set(r),
+      error:e=> console.log(e)
+    })
   }
 }
