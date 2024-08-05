@@ -7,22 +7,26 @@
 }
 .join-us__card {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 .join-us__desc {
-  padding: 30px 10px;
-  width: 400px;
+  padding: 2rem 1.2rem;
   display: flex;
+  justify-content: center;
   flex-direction: column;
-  align-items: start;
+  align-items: center;
   gap: 1.5rem;
+  max-width: 300px;
 }
 .join-us__question {
   color: black;
   font-weight: 300;
+  text-align: center;
 }
 .join-us__paragraph {
-  padding-right: 100px;
+  text-align: center;
   font-weight: 600;
 }
 .join-us__short-text {
@@ -39,9 +43,24 @@
   background-color: #DF2935;
 }
 .join-us__picture {
-  width: 350px;
+  padding: 1rem;
+  /* width: 350px; */
 }
 .join-us__image {
+  border-radius: 1rem;
   object-fit: cover;
   width: 100%;
+  max-width: 350px;
+}
+
+@media (min-width:768px) {
+  .join-us__card{
+    flex-direction: row;
+  }
+  .join-us__desc{
+    width: 300px;
+  }
+  .join-us__picture{
+    width: 350px;
+  }
 }
