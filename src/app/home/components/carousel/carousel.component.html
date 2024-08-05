@@ -1,8 +1,19 @@
-<section class="carousel__container">
-  <div class="carousel__picture">
-    <img src="https://image.tmdb.org/t/p/original/xg27NrXi7VXCGUr7MG75UqLl6Vg.jpg" alt="movie_img" class="carousel__image">
-    <span class="carousel__title">movie_name</span>
+<section class="container">
+  <div class="carousel__container">
+    <swiper-container speed="500" autoplay="true" allowTouchMove="true">
+      @for (movie of movies() | slice:0:5; track movie.id) {
+      <swiper-slide>
+        <div class="carousel__picture">
+          <img
+            src="https://image.tmdb.org/t/p/original/{{ movie.backdrop_path }}"
+            alt="movie_img"
+            class="carousel__image"
+          />
+          <span class="carousel__title">{{ movie.title }}</span>
+        </div>
+      </swiper-slide>
+      }
+
+    </swiper-container>
   </div>
-  <button class="next"><img src="/icons/arrow-right.svg" alt="arrow-right"></button>
-  <button class="prev"><img src="/icons/arrow-left.svg" alt="arrow-right"></button>
 </section>

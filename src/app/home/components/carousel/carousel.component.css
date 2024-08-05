@@ -1,8 +1,20 @@
-.carousel__container {
+.container{
   position: relative;
   width: 100%;
   margin: auto;
-  height: 470px;
+  height: 500px;
+}
+swiper-container{
+  height: 100%;
+}
+swiper-slide{
+  height: 100%;
+  width: 100%;
+}
+.carousel__container {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
 }
 .carousel__picture {
   position: relative;
@@ -13,13 +25,14 @@
 }
 .carousel__image {
   width: 100%;
-  object-fit: fill;
+  object-fit: cover;
   height: 100%;
 }
 .carousel__title {
+  text-align: center;
   position: absolute;
   font-size: 1.3rem;
-  bottom: 10px;
+  bottom: 30px;
   color: white;
   text-shadow: 3px 3px 3px black;
   font-weight: 600;
@@ -43,3 +56,27 @@
 .prev{
   left: 20px;
 }
+
+@media (min-width:768px) {
+  .carousel__container{
+    height: 470px;
+  }
+}
+@media (min-width:1024px) {
+  .carousel__container{
+    margin: 1rem auto;
+    height: 480px;
+  }
+  .carousel__image{
+    width: 90%;
+    border-radius: 1rem;
+    object-fit: fill;
+  }
+  .next, .prev{
+    background-color: transparent;
+  }
+  .next:hover, .prev:hover {
+    background-color: transparent;
+  }
+}
+
