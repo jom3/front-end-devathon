@@ -1,0 +1,7 @@
+<h2 mat-dialog-title>Error</h2>
+<mat-dialog-content class="mat-typography">
+  {{ data?.message }}
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-mini-fab color="warn" (click)="onConfirm(true)">Close</button>
+</mat-dialog-actions>
