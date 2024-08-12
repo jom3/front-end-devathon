@@ -1,17 +1,21 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { emailMatchValidator, passwordMatchValidator, passwordStrengthValidator } from '../../validators/custom-match.validator';
-import { NgIf } from '@angular/common';
 import { AuthService } from '../../services';
 import { User } from '../../models/user.interface';
 import { Router } from '@angular/router';
 import { CustomMessageService, JwtService } from '../../../shared/services';
 import { MessageType } from '../../../shared/services/custom-message.service';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-register-page',
   standalone: true,
-  imports: [ReactiveFormsModule,FormsModule,NgIf],
+  imports: [ReactiveFormsModule,FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule,MatCheckboxModule,MatButtonModule],
   templateUrl: './register-page.component.html',
   styleUrl: './register-page.component.css'
 })
@@ -26,7 +30,8 @@ export class RegisterPageComponent {
     fullName: ['',[Validators.required]],
     phone:[''],
     country:[''],
-    address:[''],
+    dni:[''],
+    genre:['',[Validators.required]],
     email:['', [Validators.required, Validators.email]],
     confirmEmail:['',[Validators.required]],
     password:['',[Validators.required, Validators.minLength(8), Validators.maxLength(20), passwordStrengthValidator()]],
@@ -45,7 +50,8 @@ export class RegisterPageComponent {
       fullName:this.registerForm.controls.fullName.value!,
       email: this.registerForm.controls.email.value!,
       password:this.registerForm.controls.password.value!,
-      address:this.registerForm.controls.address.value!,
+      dni:this.registerForm.controls.dni.value!,
+      genre:this.registerForm.controls.genre.value!,
       phone:this.registerForm.controls.phone.value!,
       country:this.registerForm.controls.fullName.value!
     }

@@ -16,113 +16,137 @@
     >
       <span class="register__title">Datos personales</span>
       <hr class="divider" />
+      <mat-form-field>
+        <mat-label>Nombre Completo</mat-label>
+        <input
+          matInput
+          class="input-form"
+          formControlName="fullName"
+          required
+        />
+        @if (this.registerForm.controls.fullName.getError('required') && this.registerForm.get('fullName')?.touched) {
+          <mat-error>El campo es requerido</mat-error>
+        }
+      </mat-form-field>
       <div class="form-input__container">
-        <div>
-          <p>Nombre Completo<span>*</span></p>
+        <mat-form-field>
+          <mat-label>Dni</mat-label>
           <input
-            type="text"
+            matInput
             class="input-form"
-            formControlName="fullName"
-            required
+            formControlName="dni"
           />
-          @if (this.registerForm.controls.fullName.getError('required') && this.registerForm.get('fullName')?.touched) {
-          <p class="form-input__error">El campo es requerido</p>
-          }
-        </div>
-        <div>
-          <p>Teléfono</p>
-          <input type="text" class="input-form" formControlName="phone" />
-        </div>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>País</mat-label>
+          <mat-select formControlName="country">
+            <mat-option value="Argentina">Argentina</mat-option>
+            <mat-option value="Colombia">Colombia</mat-option>
+            <mat-option value="Bolivia">Bolivia</mat-option>
+            <mat-option value="Venezuela">Venezuela</mat-option>
+            <mat-option value="Chile">Chile</mat-option>
+            <mat-option value="No especificar">No especificar</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
       <div class="form-input__container">
-        <div>
-          <p>País</p>
-          <input type="text" class="input-form" formControlName="country" />
-        </div>
-        <div>
-          <p>Dirección</p>
-          <input type="text" class="input-form" formControlName="address" />
-        </div>
+        <mat-form-field>
+          <mat-label>Teléfono</mat-label>
+          <input
+            matInput
+            formControlName="phone"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Genero</mat-label>
+          <mat-select formControlName="genre" required>
+            <mat-option value="Masculino">Masculino</mat-option>
+            <mat-option value="Femenino">Femenino</mat-option>
+            <mat-option value="No especificar">No especificar</mat-option>
+          </mat-select>
+          @if (this.registerForm.controls.genre.getError('required') && this.registerForm.get('genre')?.touched) {
+            <mat-error>El campo es requerido</mat-error>
+          }
+        </mat-form-field>
       </div>
-      <span class="register__title register__title-down">Datos personales</span>
+      <span class="register__title">Datos personales</span>
       <hr class="divider" />
       <div class="form-input__container">
-        <div>
-          <p>Correo electrónico<span>*</span></p>
+        <mat-form-field>
+          <mat-label>Correo electrónico</mat-label>
           <input
-            type="email"
+            matInput
             class="input-form"
             formControlName="email"
             required
           />
           @if (this.registerForm.controls.email.getError('required') && this.registerForm.controls.email.touched) {
-            <p class="form-input__error">El campo es requerido</p>
+            <mat-error>El campo es requerido</mat-error>
           }
-        </div>
-        <div>
-          <p>Repita su correo electrónico<span>*</span></p>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Repita su correo electrónico</mat-label>
           <input
-            type="email"
+            matInput
             class="input-form"
             formControlName="confirmEmail"
             required
           />
-          @if (this.registerForm.controls.confirmEmail.getError('required') && this.registerForm.controls.confirmEmail.touched) {
-            <p class="form-input__error">El campo es requerido</p>
+         @if (this.registerForm.controls.confirmEmail.getError('required') && this.registerForm.controls.confirmEmail.touched) {
+            <mat-error>El campo es requerido</mat-error>
           }
           @if (this.registerForm.controls.confirmEmail.getError('emailMismatch') && registerForm.get('confirmEmail')?.touched) {
-            <p class="form-input__error">Los correos no son similares</p>
+            <mat-error>Los correos no son similares</mat-error>
           }
-        </div>
+        </mat-form-field>
       </div>
       <div class="form-input__container form-input__password">
-        <div>
-          <p>Contraseña<span>*</span></p>
+        <mat-form-field>
+          <mat-label>Contraseña</mat-label>
           <input
+            matInput
             type="password"
             class="input-form"
             formControlName="password"
             required
           />
           @if (this.registerForm.controls.password.getError('required') && this.registerForm.controls.password.touched && !this.registerForm.controls.password.dirty) {
-            <p class="form-input__error">El campo es requerido</p>
+            <mat-error >El campo es requerido</mat-error>
           }
           @if (this.registerForm.controls.password.errors?.['minlength'] && this.registerForm.controls.password.dirty) {
-            <p class="form-input__error">El campo require 8 caracteres como mínimo</p>
+            <mat-error >El campo require 8 caracteres como mínimo</mat-error>
           }
           @if (this.registerForm.controls.password.errors?.['maxlength'] && this.registerForm.controls.password.dirty) {
-            <p class="form-input__error">El campo require 20 caracteres como máximo</p>
+            <mat-error >El campo require 20 caracteres como máximo</mat-error>
           }
           @if (this.registerForm.controls.password.getError('passwordStrength') && this.registerForm.controls.password.dirty) {
-            <p class="form-input__error">La contraseña debe tener al menos: una mayúscula, una minúscula, un carácter especial</p>
+            <mat-error >La contraseña debe tener al menos: una mayúscula, una minúscula, un carácter especial</mat-error>
           }
-        </div>
-        <div>
-          <p>Repita su contraseña<span>*</span></p>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Repita su contraseña</mat-label>
           <input
+            matInput
             type="password"
             class="input-form"
             formControlName="confirmPassword"
             required
           />
           @if (this.registerForm.controls.confirmPassword.getError('required') && this.registerForm.controls.confirmPassword.touched) {
-            <p class="form-input__error">El campo es requerido</p>
+            <mat-error>El campo es requerido</mat-error>
           }
           @if (this.registerForm.controls.confirmPassword.getError('passwordMismatch') && registerForm.get('confirmPassword')?.touched) {
-            <p class="form-input__error">Las contraseñas no son similares</p>
+            <mat-error>Las contraseñas no son similares</mat-error>
           }
-        </div>
+        </mat-form-field>
       </div>
-      <div class="checkbox__container">
-        <div class="checkbox__agree">
-          <p>Acepto el registro de esta información<span>*</span></p>
-          <input type="checkbox" formControlName="IsChecked" required />
-        </div>
+      <div>
+        <mat-checkbox formControlName="IsChecked" required>Acepto el registro de esta información</mat-checkbox>
         @if (this.registerForm.controls.IsChecked.getError('required') && this.registerForm.controls.IsChecked.touched ) {
           <p class="form-input__error">El campo es requerido</p>
         }
       </div>
-      <button type="submit">Registrarse</button>
+      <button mat-flat-button type="submit" color="primary">Registrarse</button>
     </form>
   </section>
 </div>
