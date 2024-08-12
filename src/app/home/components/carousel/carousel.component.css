@@ -1,8 +1,6 @@
 .container{
   position: relative;
-  width: 100%;
-  margin: auto;
-  height: 500px;
+  height: 400px;
 }
 swiper-container{
   height: 100%;
@@ -19,26 +17,38 @@ swiper-slide{
 .carousel__picture {
   position: relative;
   display: flex;
-  justify-content: center;
   height: 100%;
-  width: 100%;
 }
-.carousel__image {
+ .carousel__image {
   width: 100%;
+  position: absolute;
   object-fit: cover;
   height: 100%;
 }
+.carousel-title__container{
+  position: absolute;
+  background: linear-gradient(to top,#000000d0 , #0000000c);
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+/*.carousel-title__container{
+  width: 100%;
+  position: absolute;
+  background-color: black;
+} */
 .carousel__title {
+  width: 100%;
   text-align: center;
   position: absolute;
   font-size: 1.3rem;
   bottom: 30px;
   color: white;
   text-shadow: 3px 3px 3px black;
-  font-weight: 600;
+  font-weight: 500;
   text-transform: uppercase;
 }
-.next, .prev {
+/* .next, .prev {
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.616);
   outline: none;
@@ -55,9 +65,9 @@ swiper-slide{
 }
 .prev{
   left: 20px;
-}
+} */
 
-@media (min-width:768px) {
+/* @media (min-width:768px) {
   .carousel__container{
     height: 470px;
   }
@@ -78,5 +88,5 @@ swiper-slide{
   .next:hover, .prev:hover {
     background-color: transparent;
   }
-}
+} */
 

@@ -1,19 +1,20 @@
 <section class="container">
   <div class="carousel__container">
-    <swiper-container speed="500" autoplay="true" allowTouchMove="true">
+    <swiper-container speed="2000" autoplay="true" allowTouchMove="true">
       @for (movie of movies() | slice:0:5; track movie.id) {
       <swiper-slide>
-        <div class="carousel__picture">
+        <picture class="carousel__picture">
           <img
             src="https://image.tmdb.org/t/p/original/{{ movie.backdrop_path }}"
             alt="movie_img"
             class="carousel__image"
           />
-          <span class="carousel__title">{{ movie.title }}</span>
-        </div>
+          <div class="carousel-title__container">
+            <span class="carousel__title">{{ movie.title }}</span>
+          </div>
+        </picture>
       </swiper-slide>
       }
-
     </swiper-container>
   </div>
 </section>
