@@ -1,22 +1,9 @@
 <div class="container">
   <main class="innerContainer">
     <div class="movie">
-      <h3 class="movieTitle">{{ movieTitle }}</h3>
+      <h3 class="movieTitle">{{ cinemaHallDescription }}</h3>
     </div>
 
-    <!-- Showing a static legend bar -->
-    <!-- <div class="legend">
-      <span class="glyphicon glyphicon-print freeSeat"></span> FREE
-      <span
-        class="glyphicon glyphicon-ban-circle reservedSeat padding-left"
-      ></span>
-      TAKEN
-      <span
-        class="glyphicon glyphicon-ok-sign selectedSeat padding-left"
-      ></span>
-      SELECTED
-    </div> -->
-    <!-- Masterpiece of Rajat Barman-->
     <p class="font14 marginTop5">SCREEN THIS WAY</p>
     <div class="screen"></div>
 
@@ -25,30 +12,15 @@
       <span
         class="seat"
         *ngFor="let col of cols"
-        (click)="seatClicked(row + col)"
-        [ngSwitch]="getStatus(row + col)"
-        [ngClass]="{ selected: reserved.includes(row + col) }"
+        (click)="seatClicked(row, col)"
         style="margin-left: 2%"
       >
-        <!-- <span
-          *ngSwitchCase="'selected'"
-          class="glyphicon glyphicon-ok-sign selectedSeat"
-        ></span>
-        <span
-          *ngSwitchCase="'reserved'"
-          class="glyphicon glyphicon-ban-circle reservedSeat"
-        ></span>
-        <span
-          *ngSwitchDefault
-          class="glyphicon glyphicon-print freeSeat"
-        ></span> -->
-
         <span
           class="material-symbols-outlined"
           [ngClass]="{
-            standard: !reserved.includes(row + col),
-            reclinable: reserved.includes(row + col),
-            deluxe: deluxe.includes(row + col)
+            standard: !vip.includes(row + col) && !premium.includes(row + col),
+            reclinable: vip.includes(row + col),
+            deluxe: premium.includes(row + col)
           }"
         >
           living
@@ -56,99 +28,36 @@
       </span>
     </div>
 
-    <!-- Structural directive - only visible on selection -->
-    <!-- <div *ngIf="selected.length > 0" class="font14 marginTB10">
-      <div class="wordWrap">
-        SEATS RESERVED : {{ selected.length }}
-        <span class="count">({{ selected }})</span>
+    <div class="row">
+      <div class="column"></div>
+      <div class="column">
+        <span
+          class="material-symbols-outlined chani"
+          [ngClass]="{
+            standard: true
+          }"
+        >
+          living
+        </span>
+        <span
+          class="material-symbols-outlined"
+          [ngClass]="{
+            reclinable: true
+          }"
+        >
+          living
+        </span>
+        <span
+          class="material-symbols-outlined"
+          [ngClass]="{
+            deluxe: true
+          }"
+        >
+          living
+        </span>
+        <h5>STANDARD | VIP | DELUXE</h5>
       </div>
-      <div>
-        PRICE : {{ ticketPrice }} * {{ selected.length }} = {{ currency }}.{{
-          ticketPrice * selected.length
-        }}
-      </div>
-      <div>CONVENIENCE FEE : {{ currency }}.{{ convFee }}</div>
-      <div>
-        TOTAL : {{ currency }}.{{ ticketPrice * selected.length + convFee }}
-      </div>
-    </div> -->
-
-    <!-- Action buttons stolen from rajat barman -->
-    <div class="buttonBar marginTop5">
-      <span
-        class="material-symbols-outlined"
-        [ngClass]="{
-          standard: true
-        }"
-      >
-        living
-      </span>
-      <p>STANDARD</p>
-
-      <span
-        class="material-symbols-outlined"
-        [ngClass]="{
-          reclinable: true
-        }"
-      >
-        living
-      </span>
-      <p>RECLINABLE</p>
-
-      <span
-        class="material-symbols-outlined"
-        [ngClass]="{
-          deluxe: true
-        }"
-      >
-        living
-      </span>
-      <p>DELUXE</p>
-      <!-- <button
-        (click)="clearSelected()"
-        [disabled]="selected.length === 0"
-        class="btn btn-default btn-sm"
-      >
-        Clear
-      </button> -->
-      <!-- <button (click)="showSelected()" [disabled]="selected.length === 0" class="btn btn-success btn-sm">Buy Tickets</button> -->
-      <!-- <button
-        (click)="showSelected()"
-        [disabled]="selected.length === 0"
-        type="button"
-        class="btn btn-info btn-sm"
-        data-toggle="modal"
-        data-target="#myModal"
-      >
-        Open Modal
-      </button> -->
-    </div>
-    <div class="modal fade" id="myModal" role="dialog">
-      <div class="modal-dialog">
-        <!-- Modal content-->
-        <!-- <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">
-              &times;
-            </button>
-            <h4 class="modal-title">Modal Header</h4>
-          </div>
-          <div class="modal-body">
-            <p>PRICE:{{ price }}</p>
-            <p>NUMBER of TICKET :{{ tick }}</p>
-            <p>CONV FEE :{{ conv }}</p>
-            <p>TOTAL :{{ price + conv }}</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">
-              Close
-            </button>
-            <button type="button" class="btn btn-success" data-dismiss="modal">
-              PAY
-            </button>
-          </div>
-        </div> -->
-      </div>
+      <div class="column1"></div>
     </div>
   </main>
 </div>

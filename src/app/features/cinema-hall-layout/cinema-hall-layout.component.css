@@ -91,3 +91,18 @@
   font-size: 60px;
   background-color: rgb(255, 255, 255);
 }
+
+.column {
+  margin-top: 2%;
+  float: left;
+  width: 32.3%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+  border: 1px solid black;
+  border-radius: 5px;
+}
