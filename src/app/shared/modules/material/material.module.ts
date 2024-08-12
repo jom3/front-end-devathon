@@ -7,7 +7,6 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
 
 //* you must add angular modules in imports and exports
-
 @NgModule({
   declarations: [],
   imports: [MatGridListModule, MatButtonModule, MatCardModule, MatSidenavModule, MatDialogModule, MatIconModule],
