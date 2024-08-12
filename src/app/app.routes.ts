@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path:'', 
+    path:'',
     loadChildren:()=>import('./home/home-routing').then(r=>r.routes)
   },
   {
@@ -12,7 +12,7 @@ export const routes: Routes = [
   {
     path: 'movies',
     loadChildren: () =>
-      import('./pages/movies.routes').then((m) => m.MOVIES_ROUTES),
+      import('./movies/movies.routes').then((m) => m.MOVIES_ROUTES),
   },
   {
     path: '**',
