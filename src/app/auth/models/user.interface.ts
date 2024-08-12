@@ -3,8 +3,9 @@ export interface User {
   fullName: string;
   email: string;
   phone?: string;
-  address?: string;
+  dni?: string;
   country?: string;
+  genre: string;
   role?: Role;
   create_at?: Date;
   update_at?: Date;
