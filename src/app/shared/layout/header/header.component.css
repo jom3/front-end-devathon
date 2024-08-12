@@ -4,7 +4,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  border-bottom: .1rem solid black;
 }
 .navbar-logo__container {
   cursor: pointer;
@@ -19,8 +18,16 @@
 }
 .navbar__title {
   font-size: 1rem;
-  font-weight: 800;
-  font-family: "Playfair Display", serif;
+  font-weight: 500;
+}
+.nav__buttons{
+  display: flex;
+  flex-direction: row;
+  gap: .3rem;
+}
+.nav__button{
+  padding: 0 .7rem;
+  border-radius: .3rem;
 }
 .menu-button__container{
   border: none;
@@ -42,8 +49,10 @@
   color: black;
 }
 .nav-button__item{
-  background-color: brown;
+  cursor: pointer;
+  background-color: #0D2149;
   color: white;
+  font-size: 1rem;
   padding: .3rem 1.5rem;
   border-radius: .3rem;
 }

@@ -16,18 +16,6 @@
   </div>
 </aside>
 
-<section class="meet-us__section">
-  <a href="#" class="meet-us__item">CONÓCENOS</a>
-  <a href="#" class="meet-us__item">FORMATOS Y SALAS</a>
-  <a href="#" class="meet-us__item">OTROS SERVICIOS</a>
-  <a href="#" class="meet-us__item">TRABAJA CON NOSOTROS</a>
-  @if (isLogged()) {
-   <button mat-flat-button color="primary" class="meet-use__button" (click)="onLogout()">Cerrar sesión</button>
-  } @else {
-    <button mat-flat-button color="primary" class="meet-use__button" [routerLink]="['/auth/register']">REGISTRARSE</button>
-    <button mat-flat-button color="warn" class="meet-use__button" (click)="openLoginDialog()">INICIAR SESIÓN</button>
-  }
-</section>
 <header class="navbar__container">
   <section [routerLink]="['/']" class="navbar-logo__container">
     <img src="/images/logo.svg" alt="logo" class="navbar__logo">
@@ -35,10 +23,18 @@
   </section>
   <button class="menu-button__container" (click)="onToggle()" ><img src="/icons/menu.svg" alt=""></button>
   <nav class="navbar__nav">
-    <a href="" class="nav__item">CARTELERA</a>
-    <a href="" class="nav__item" [routerLink]="['/movies']">PELÍCULAS</a>
-    <a href="" class="nav__item">PROMOCIONES</a>
-    <a href="" class="nav__item">GOLOSINAS</a>
-    <a href="" class="nav__item nav-button__item">CLUB <br> ALFAJOR</a>
+    <a href="" class="nav__item">Cartelera</a>
+    <a href="" class="nav__item" [routerLink]="['/movies']">Películas</a>
+    <a href="" class="nav__item">Promociones</a>
+    <a href="" class="nav__item">Golosinas</a>
+    <a class=" nav__item nav-button__item"><span>Club <br> Alfajor</span></a>
   </nav>
+  <div class="nav__buttons">
+    @if (isLogged()) {
+      <button mat-flat-button color="warn" class="nav__button" (click)="onLogout()">Cerrar sesión</button>
+     } @else {
+        <button mat-flat-button color="primary" class="nav__button" [routerLink]="['/auth/register']">Registrarse</button>
+        <button mat-flat-button color="accent" class="nav__button" (click)="openLoginDialog()">Iniciar Sesión</button>
+      }
+    </div>
 </header>
