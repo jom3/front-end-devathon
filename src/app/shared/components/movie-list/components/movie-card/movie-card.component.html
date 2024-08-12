@@ -1,0 +1,4 @@
+<div class="movie-card__container" routerLink="/movies/showmovie/{{movie().id}}">
+  <img [src]="imagesBaseUrl + '/w400/' + movie().poster_path" alt="{{'asd'}}" class="card__image"/>
+  <span class="card__title"> <img src="/icons/cart.svg" alt="cart">Comprar</span>
+</div>
