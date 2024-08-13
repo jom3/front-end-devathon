@@ -1,0 +1,10 @@
+  <div class="movie-list__container">
+  <h1 class="posters__title">{{title() | titlecase}}</h1>
+      <swiper-container navigation slides-per-view="3" loop="true" css-mode="true">
+      @for (movie of movies(); track movie.id) {
+        <swiper-slide>
+          <movie-card [movie]="movie"/>
+        </swiper-slide>
+      }
+    </swiper-container>
+</div>

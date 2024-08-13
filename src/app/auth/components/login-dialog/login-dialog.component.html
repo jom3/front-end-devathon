@@ -6,7 +6,7 @@
 
   <form [formGroup]="loginForm" (submit)="onLogin()" class="login__form">
     <mat-form-field>
-      <mat-label>Email</mat-label>
+      <mat-label>Correo electrónico</mat-label>
       <input
       matInput
       formControlName="username"
@@ -15,10 +15,10 @@
       class="login__form-input"
       />
       @if (this.loginForm.controls.username.getError('required') && this.loginForm.controls.username.touched) {
-        <mat-error>Email es requerido</mat-error>
+        <mat-error>Correo electrónico requerido</mat-error>
       }
       @if (this.loginForm.controls.username.getError('email')) {
-        <mat-error>El email no es valido</mat-error>
+        <mat-error>El correo electrónico no es valido</mat-error>
       }
     </mat-form-field>
     <mat-form-field>
@@ -34,7 +34,9 @@
       <mat-error>Contraseña requerida</mat-error>
     }
   </mat-form-field>
-  <button mat-flat-button [disabled]="this.loginForm.invalid" [mat-dialog-close]="true" type="submit">Login</button>
+  <div class="button__container">
+    <button mat-flat-button [disabled]="this.loginForm.invalid" [mat-dialog-close]="true" class="submit__button" type="submit">Acceder</button>
+  </div>
 </form>
 <mat-divider></mat-divider>
 <div class="login__form-links">

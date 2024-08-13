@@ -1,0 +1,22 @@
+@defer (on viewport()) {
+<div class="container">
+  @for (video of movieVideos() | slice:0:1; track video.id) {
+  <section class="video__section">
+    <div class="video__container">
+      <app-video [key]="video.key" class="video" />
+    </div>
+  </section>
+  } @if(!isLogged()){
+    <div class="get-ticket__container">
+      <span>Quieres adquirir una entrada para esta película?</span>
+      <button>Inicia sesión</button>
+    </div>
+  } @if (isLogged()) { compra entrada }
+</div>
+} @placeholder {
+  <div class="video__container"></div>
+}@loading {
+<div class="loading__container">
+  <app-spinner />
+</div>
+}

@@ -1,0 +1,37 @@
+ .container{
+  padding: 1rem 1rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction:row;
+  gap: 1rem;
+}
+.movie-info__container{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0 2rem;
+  max-width: 300px;
+}
+.card__title{
+  margin-top: .5rem;
+  font-weight: 600;
+}
+.movie-page__container{
+  height: 100%;
+  width: 100%;
+}
+hr{
+  width: 100%;
+}
+.cast__section{
+  display: flex;
+  flex-direction: row;
+  gap: .3rem;
+  flex-wrap: wrap;
+}
+.cast__image{
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 50%;
+}

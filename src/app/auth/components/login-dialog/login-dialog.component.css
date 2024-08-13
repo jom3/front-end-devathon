@@ -18,6 +18,9 @@
   flex-direction: column;
   gap: 10px;
 }
+.login__form-input{
+  border: .3rem;
+}
 .login__form>button{
   margin: 1rem 0;
 }
@@ -30,4 +33,16 @@
 .login__form-links>a{
   color: blue;
   text-decoration: none;
+}
+.button__container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.submit__button{
+  border-radius: .3rem;
+  margin: 0 auto;
+  width: 100px;
 }
