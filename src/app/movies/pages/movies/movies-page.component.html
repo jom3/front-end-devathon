@@ -1,0 +1,19 @@
+<div class="container">
+  <h1 class="movies__title">Cartelera, {{ monthName }} {{ year }}</h1>
+  <div class="movies__container">
+    @for(movie of movies() | slice:0:10; track movie.id){
+      @defer (on viewport()) {
+        <div  routerLink="/movies/showmovie/{{ movie.id }}">
+          <movie-card [movie]="movie" />
+        </div>
+      }
+      @loading {
+        <app-spinner />
+      }
+      @placeholder {
+        <div class="movie__card"></div>
+      }
+    }
+  </div>
+</div>
+
