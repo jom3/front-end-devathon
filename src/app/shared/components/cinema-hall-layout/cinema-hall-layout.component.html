@@ -1,0 +1,63 @@
+<div class="container">
+  <main class="innerContainer">
+    <div class="movie">
+      <h3 class="movieTitle">{{ cinemaHallDescription }}</h3>
+    </div>
+
+    <p class="font14 marginTop5">SCREEN THIS WAY</p>
+    <div class="screen"></div>
+
+    <!-- Generate the seating grid -->
+    <div *ngFor="let row of rows" style="margin-top: 2%">
+      <span
+        class="seat"
+        *ngFor="let col of cols"
+        (click)="seatClicked(row, col)"
+        style="margin-left: 2%"
+      >
+        <span
+          class="material-symbols-outlined"
+          [ngClass]="{
+            standard: !vip.includes(row + col) && !premium.includes(row + col),
+            reclinable: vip.includes(row + col),
+            deluxe: premium.includes(row + col)
+          }"
+        >
+          living
+        </span>
+      </span>
+    </div>
+
+    <div class="row">
+      <div class="column"></div>
+      <div class="column">
+        <span
+          class="material-symbols-outlined chani"
+          [ngClass]="{
+            standard: true
+          }"
+        >
+          living
+        </span>
+        <span
+          class="material-symbols-outlined"
+          [ngClass]="{
+            reclinable: true
+          }"
+        >
+          living
+        </span>
+        <span
+          class="material-symbols-outlined"
+          [ngClass]="{
+            deluxe: true
+          }"
+        >
+          living
+        </span>
+        <h5>STANDARD | VIP | DELUXE</h5>
+      </div>
+      <div class="column1"></div>
+    </div>
+  </main>
+</div>
