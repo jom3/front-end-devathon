@@ -7,14 +7,17 @@
     </div>
   </section>
   } @if(!isLogged()){
-    <div class="get-ticket__container">
-      <span>Quieres adquirir una entrada para esta película?</span>
-      <button>Inicia sesión</button>
-    </div>
-  } @if (isLogged()) { compra entrada }
+  <div class="get-ticket__container">
+    <span>Quieres adquirir una entrada para esta película?</span>
+    <button>Inicia sesión</button>
+  </div>
+  } @if (isLogged()) {
+  <p></p>
+  <br />
+  }
 </div>
 } @placeholder {
-  <div class="video__container"></div>
+<div class="video__container"></div>
 }@loading {
 <div class="loading__container">
   <app-spinner />

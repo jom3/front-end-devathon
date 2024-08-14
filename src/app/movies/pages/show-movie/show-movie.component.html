@@ -2,30 +2,93 @@
   <div class="movie-info__container">
     <picture class="card__picture">
       @if (movie().poster_path) {
-        <img [src]="imagesBaseUrl + '/w300/' + movie().poster_path" alt="{{movie().title}}" class="card__image"/>
+      <img
+        [src]="imagesBaseUrl + '/w300/' + movie().poster_path"
+        alt="{{ movie().title }}"
+        class="card__image"
+      />
       }@else {
-        <img src="\images\no-poster-available.jpg" alt="" class="card__image"/>
+      <img src="\images\no-poster-available.jpg" alt="" class="card__image" />
       }
     </picture>
     <span class="card__title">Titulo original</span>
-    <hr>
+    <hr />
     <span class="card__text">{{ movie().title }}</span>
     <span class="card__title">Descripción</span>
-    <hr>
+    <hr />
     <p class="movie__desc">{{ movie().overview }}</p>
     <span class="card__title">Actores</span>
-    <hr>
+    <hr />
     <section class="cast__section">
-      @for (cast of movieCast() | slice:0:10; track cast.id) {
-        @if (cast.profile_path) {
-          <img [src]="imagesBaseUrl + '/w185/' + cast.profile_path" class="cast__image"/>
-        }
-      }
+      @for (cast of movieCast() | slice:0:10; track cast.id) { @if
+      (cast.profile_path) {
+      <img
+        [src]="imagesBaseUrl + '/w185/' + cast.profile_path"
+        class="cast__image"
+      />
+      } }
     </section>
   </div>
   <div class="movie-page__container">
-    <router-outlet/>
+    <router-outlet />
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource">
+        <!-- Position Column -->
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef>Title</th>
+          <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+        </ng-container>
+
+        Name Column
+        <ng-container matColumnDef="cine">
+          <th mat-header-cell *matHeaderCellDef>Cinema name</th>
+          <td mat-cell *matCellDef="let element">{{ element.cine }}</td>
+        </ng-container>
+
+        Weight Column
+        <ng-container matColumnDef="hall">
+          <th mat-header-cell *matHeaderCellDef>Cinema Hall</th>
+          <td mat-cell *matCellDef="let element">{{ element.sala }}</td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="seats">
+          <th mat-header-cell *matHeaderCellDef>Total seats</th>
+          <td mat-cell *matCellDef="let element">{{ element.butacas }}</td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="start">
+          <th mat-header-cell *matHeaderCellDef>Start:</th>
+          <td mat-cell *matCellDef="let element">{{ element.inicio }}</td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="finish">
+          <th mat-header-cell *matHeaderCellDef>Finish</th>
+          <td mat-cell *matCellDef="let element">{{ element.fin }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef></th>
+
+          <td mat-cell *matCellDef="let element">
+            <button mat-flat-button>Details</button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+        aria-label="Select page of periodic elements"
+      >
+      </mat-paginator>
+    </div>
   </div>
 </div>
 
-
+{{ movie().id }}
