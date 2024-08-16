@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { emailMatchValidator, passwordMatchValidator, passwordStrengthValidator } from '../../validators/custom-match.validator';
 import { AuthService } from '../../services';
@@ -11,6 +11,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
+import { UserService } from '../../../shared/services/user.service';
 
 @Component({
   selector: 'app-register-page',
@@ -20,11 +21,26 @@ import {MatButtonModule} from '@angular/material/button';
   styleUrl: './register-page.component.css'
 })
 export class RegisterPageComponent {
+  user!:User;
+  id = input<string>();
+  public hasPath = signal<boolean>(false)
   readonly fb = inject(FormBuilder)
   private readonly authSvc = inject(AuthService)
+  private readonly userSvc = inject(UserService)
   private readonly router = inject(Router)
   private readonly _snackbarSvc = inject(CustomMessageService)
   private readonly jwtSvc = inject(JwtService)
+
+  constructor(){
+    if(this.router.url.includes('/user/update-user')){
+      this.hasPath.set(true)
+      this.userSvc.getUserById(this.id()!).subscribe({
+        next:r=>this.user=r
+      })
+    }else{
+      this.hasPath.set(false)
+    }
+  }
 
   registerForm = this.fb.group({
     fullName: ['',[Validators.required]],
@@ -32,8 +48,8 @@ export class RegisterPageComponent {
     country:[''],
     dni:[''],
     genre:['',[Validators.required]],
-    email:['', [Validators.required, Validators.email]],
-    confirmEmail:['',[Validators.required]],
+    email:[ this.hasPath() ? this.user.email :'', [Validators.required, Validators.email]],
+    confirmEmail:[ this.hasPath() ? this.user.email :'',[Validators.required]],
     password:['',[Validators.required, Validators.minLength(8), Validators.maxLength(20), passwordStrengthValidator()]],
     confirmPassword:['',[Validators.required]],
     IsChecked:[false, [Validators.requiredTrue]]
@@ -41,7 +57,7 @@ export class RegisterPageComponent {
     validators:[emailMatchValidator('email','confirmEmail'), passwordMatchValidator('password','confirmPassword')]
   })
 
-  onRegister(){
+  onSubmit(){
     if(this.registerForm.invalid){
       this.registerForm.markAllAsTouched()
       return;
@@ -54,6 +70,14 @@ export class RegisterPageComponent {
       genre:this.registerForm.controls.genre.value!,
       phone:this.registerForm.controls.phone.value!,
       country:this.registerForm.controls.fullName.value!
+    }
+    if(this.hasPath()==true){
+      this.userSvc.updateUser(this.id()!,user).subscribe({
+        next:r=>{
+          this._snackbarSvc.showCustomMessage({message:'Usuario modificado con éxito',type:MessageType.success})
+        },
+        error:e=>console.log(e)
+      })
     }
     this.authSvc.signUp(user).subscribe({
       next:r=>{

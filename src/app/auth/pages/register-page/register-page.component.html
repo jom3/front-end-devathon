@@ -11,7 +11,7 @@
   <section class="register__container">
     <form
       [formGroup]="registerForm"
-      (submit)="onRegister()"
+      (submit)="onSubmit()"
       class="register__form"
     >
       <span class="register__title">Datos personales</span>
@@ -146,7 +146,7 @@
           <p class="form-input__error">El campo es requerido</p>
         }
       </div>
-      <button mat-flat-button type="submit" color="primary">Registrarse</button>
+      <button mat-flat-button type="submit" color="primary">{{this.hasPath() ? 'Modificar': 'Registrarse'}}</button>
     </form>
   </section>
 </div>
