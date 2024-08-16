@@ -69,7 +69,7 @@ export class RegisterPageComponent {
       dni:this.registerForm.controls.dni.value!,
       genre:this.registerForm.controls.genre.value!,
       phone:this.registerForm.controls.phone.value!,
-      country:this.registerForm.controls.fullName.value!
+      country:this.registerForm.controls.country.value!
     }
     if(this.hasPath()==true){
       this.userSvc.updateUser(this.id()!,user).subscribe({
