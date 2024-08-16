@@ -38,6 +38,14 @@
     <button mat-flat-button [disabled]="this.loginForm.invalid" [mat-dialog-close]="true" class="submit__button" type="submit">Acceder</button>
   </div>
 </form>
+<div class="divider-container">
+  <mat-divider></mat-divider>
+  <span>o</span>
+  <mat-divider></mat-divider>
+</div>
+<div class="button__container">
+  <button class="google-button" [mat-dialog-close]="true" (click)="onGoogleRegistration()"><img src="/icons/google.svg" alt="google-svg"> Registro con google </button>
+</div>
 <mat-divider></mat-divider>
 <div class="login__form-links">
   <a href="#">¿Olvidaste la contraseña?</a>

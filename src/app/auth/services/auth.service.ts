@@ -17,14 +17,18 @@ export class AuthService {
   private baseUrl = environment.baseUrl;
 
   signUp(user:User):Observable<string>{
-    return this.http.post<TokenResponse>(`${this.baseUrl}/auth/signUp`,user).pipe(
+    return this.http.post<TokenResponse>(`${this.baseUrl}/auth/signup`,user).pipe(
       map((response:TokenResponse)=>response.token)
     )
   }
 
   signIn(email:string, password:string):Observable<string>{
-    return this.http.post<TokenResponse>(`${this.baseUrl}/auth/signIn`,{email,password}).pipe(
+    return this.http.post<TokenResponse>(`${this.baseUrl}/auth/signin`,{email,password}).pipe(
       map((response:TokenResponse)=>response.token)
     )
+  }
+
+  googleRegistration():Observable<any>{
+    return this.http.get(`${this.baseUrl}/auth/google`)
   }
 }
