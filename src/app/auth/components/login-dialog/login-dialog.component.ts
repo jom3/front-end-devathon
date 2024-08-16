@@ -20,7 +20,7 @@ import { MessageType } from '../../../shared/services/custom-message.service';
     MatInputModule,
     MatButtonModule,
     MatDividerModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   templateUrl: './login-dialog.component.html',
   styleUrl: './login-dialog.component.css'
@@ -48,6 +48,13 @@ export class LoginDialogComponent {
         this._snackBar.showCustomMessage({message:'Inicio de sesión correcto', type:MessageType.success})
       },
       error:e=>console.log(e)
+    })
+  }
+
+  onGoogleRegistration(){
+    this.authSvc.googleRegistration().subscribe({
+      next:r=> this._snackBar.showCustomMessage({message:'Se envió instrucciones a su correo', type:MessageType.success}),
+      error:e=> this._snackBar.showCustomMessage({message:'Error al registrarse con google', type:MessageType.warn})
     })
   }
 }
