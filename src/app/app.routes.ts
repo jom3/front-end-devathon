@@ -10,6 +10,10 @@ export const routes: Routes = [
     loadChildren:()=>import('./auth/auth-routing').then(r=>r.routes)
   },
   {
+    path:'user/update-user/:id',
+    loadComponent:()=>import('./auth/pages/register-page/register-page.component').then(c=>c.RegisterPageComponent)
+  },
+  {
     path: 'movies',
     loadChildren: () =>
       import('./movies/movies.routes').then((m) => m.MOVIES_ROUTES),
