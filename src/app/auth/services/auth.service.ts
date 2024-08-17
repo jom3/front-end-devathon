@@ -32,6 +32,10 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}/auth/recoverypass`,email)
   }
 
+  changePassword(id:string, newPassword:string){
+    return this.http.patch(`${this.baseUrl}/auth/recoverypass/resetpassword/${id}`,newPassword)
+  }
+
   googleRegistration():Observable<any>{
     return this.http.get(`${this.baseUrl}/auth/google`)
   }
