@@ -5,10 +5,11 @@ import { MatInputModule } from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import { AuthService } from '../../services';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { RouterLink } from '@angular/router';
 import { CustomMessageService, JwtService } from '../../../shared/services';
 import { MessageType } from '../../../shared/services/custom-message.service';
+import { RecoveryDialogComponent } from '../recovery-dialog/recovery-dialog.component';
 
 @Component({
   selector: 'app-login-dialog',
@@ -30,6 +31,7 @@ export class LoginDialogComponent {
   readonly _snackBar = inject(CustomMessageService)
   private readonly authSvc = inject(AuthService)
   private readonly jwtSvc = inject(JwtService)
+  readonly dialog = inject(MatDialog);
 
   loginForm = this.fb.group({
     username: ['',[Validators.required, Validators.email]],
@@ -56,5 +58,11 @@ export class LoginDialogComponent {
       next:r=> this._snackBar.showCustomMessage({message:'Se envió instrucciones a su correo', type:MessageType.success}),
       error:e=> this._snackBar.showCustomMessage({message:'Error al registrarse con google', type:MessageType.warn})
     })
+  }
+
+  openRecoveryDialog() {
+    this.dialog.open(RecoveryDialogComponent,{
+      width:'400px',
+    });
   }
 }
