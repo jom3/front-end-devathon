@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="message__container">
+    <span>Recupera tu contraseña</span>
+    <p class="recovery-message">¡No te preocupes! Restablecer tu contraseña es rápido y fácil. Solo sigue las instrucciones y pronto estarás de vuelta.</p>
+  </div>
+  <form
+  [formGroup]="recoveryForm"
+  (submit)="onRecovery()"
+  class="recovery__form"
+>
+  <div class="form-input__container form-input__password">
+    <mat-form-field>
+      <mat-label>Contraseña</mat-label>
+      <input
+        matInput
+        type="password"
+        class="input-form"
+        formControlName="password"
+        required
+      />
+      @if (this.recoveryForm.controls.password.getError('required') && this.recoveryForm.controls.password.touched && !this.recoveryForm.controls.password.dirty) {
+        <mat-error >El campo es requerido</mat-error>
+      }
+      @if (this.recoveryForm.controls.password.errors?.['minlength'] && this.recoveryForm.controls.password.dirty) {
+        <mat-error >El campo require 8 caracteres como mínimo</mat-error>
+      }
+      @if (this.recoveryForm.controls.password.errors?.['maxlength'] && this.recoveryForm.controls.password.dirty) {
+        <mat-error >El campo require 20 caracteres como máximo</mat-error>
+      }
+      @if (this.recoveryForm.controls.password.getError('passwordStrength') && this.recoveryForm.controls.password.dirty) {
+        <mat-error >La contraseña debe tener al menos: una mayúscula, una minúscula, un carácter especial</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Repita su contraseña</mat-label>
+      <input
+        matInput
+        type="password"
+        class="input-form"
+        formControlName="confirmPassword"
+        required
+      />
+      @if (this.recoveryForm.controls.confirmPassword.getError('required') && this.recoveryForm.controls.confirmPassword.touched) {
+        <mat-error>El campo es requerido</mat-error>
+      }
+      @if (this.recoveryForm.controls.confirmPassword.getError('passwordMismatch') && recoveryForm.get('confirmPassword')?.touched) {
+        <mat-error>Las contraseñas no son similares</mat-error>
+      }
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-checkbox formControlName="IsChecked" required>Estoy de acuerdo a modificar mi contraseña</mat-checkbox>
+    @if (this.recoveryForm.controls.IsChecked.getError('required') && this.recoveryForm.controls.IsChecked.touched ) {
+      <p class="form-input__error">El campo es requerido</p>
+    }
+  </div>
+  <button mat-flat-button type="submit" class="recovery-form__button" color="primary">Modificar contraseña</button>
+</form>
+</div>
