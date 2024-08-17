@@ -28,6 +28,10 @@ export class AuthService {
     )
   }
 
+  recoverPassword(email:string){
+    return this.http.post(`${this.baseUrl}/auth/recoverypass`,email)
+  }
+
   googleRegistration():Observable<any>{
     return this.http.get(`${this.baseUrl}/auth/google`)
   }

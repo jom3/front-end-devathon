@@ -48,7 +48,7 @@
 </div>
 <mat-divider></mat-divider>
 <div class="login__form-links">
-  <a href="#">¿Olvidaste la contraseña?</a>
+  <a (click)="openRecoveryDialog()" [mat-dialog-close]="true">¿Olvidaste la contraseña?</a>
   <a [routerLink]="['/auth/register']" [mat-dialog-close]="true">Regístrate</a>
 </div>
 </div>

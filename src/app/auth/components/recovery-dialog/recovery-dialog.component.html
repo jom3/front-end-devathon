@@ -1,0 +1,31 @@
+<div class="recovery__container">
+  <div class="recovery-logo__container">
+    <img src="/images/logo.svg" alt="logo">
+    <span>SLOW <br> MOVIE</span>
+  </div>
+
+  <h1 class="recovery__text">Reinicio de contraseña</h1>
+
+  <form [formGroup]="recoveryForm" (submit)="onRecover()" class="recovery__form">
+    <mat-form-field>
+      <mat-label>Correo electrónico</mat-label>
+      <input
+      matInput
+      formControlName="email"
+      required
+      type="email"
+      class="recovery__form-input"
+      />
+      @if (this.recoveryForm.controls.email.getError('required') && this.recoveryForm.controls.email.touched) {
+        <mat-error>Correo electrónico requerido</mat-error>
+      }
+      @if (this.recoveryForm.controls.email.getError('email')) {
+        <mat-error>El correo electrónico no es valido</mat-error>
+      }
+    </mat-form-field>
+  <div class="button__container">
+    <button mat-flat-button [disabled]="this.recoveryForm.invalid" [mat-dialog-close]="true" class="submit__button" type="submit">Enviar</button>
+  </div>
+</form>
+</div>
+
