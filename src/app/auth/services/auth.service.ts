@@ -29,11 +29,11 @@ export class AuthService {
   }
 
   recoverPassword(email:string){
-    return this.http.post(`${this.baseUrl}/auth/recoverypass`,email)
+    return this.http.post(`${this.baseUrl}/auth/recoverypass`,{email})
   }
 
-  changePassword(id:string, newPassword:string){
-    return this.http.patch(`${this.baseUrl}/auth/recoverypass/resetpassword/${id}`,newPassword)
+  changePassword(id:string, newPassword:string, newConfirmPassword:string){
+    return this.http.patch(`${this.baseUrl}/auth/recoverypass/resetpassword/${id}`,{newPassword, newConfirmPassword})
   }
 
   googleRegistration():Observable<any>{

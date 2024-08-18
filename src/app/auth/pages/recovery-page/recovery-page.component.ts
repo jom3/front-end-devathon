@@ -37,8 +37,8 @@ export class RecoveryPageComponent {
       this.recoveryForm.markAllAsTouched()
       return;
     }
-    const newPasswordData = this.recoveryForm.getRawValue().password!
-    this.authSvc.changePassword(this.id()!,newPasswordData).subscribe({
+    const newPasswordData = this.recoveryForm.getRawValue()
+    this.authSvc.changePassword(this.id()!,newPasswordData.password!, newPasswordData.confirmPassword!).subscribe({
       next:r=> {
         this._snackbarSvc.showCustomMessage({message:'Contraseña modificada con exito', type:MessageType.success})
         this.router.navigate(['/'])
