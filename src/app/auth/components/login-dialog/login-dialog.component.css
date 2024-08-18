@@ -33,6 +33,7 @@
 .login__form-links>a{
   color: blue;
   text-decoration: none;
+  cursor: pointer;
 }
 .button__container{
   width: 100%;
