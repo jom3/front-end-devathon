@@ -18,7 +18,7 @@ export class FooterComponent {
     this.dialog.open(TermsAndConditionsComponent,{});
   }
 
-  openPrivacyStatement(): void {
+  openPrivacyStatementDialog(): void {
     this.dialog.open(PrivacyStatementComponent,{});
   }
 
