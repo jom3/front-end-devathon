@@ -6,7 +6,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import { AuthService } from '../../services';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CustomMessageService, JwtService } from '../../../shared/services';
 import { MessageType } from '../../../shared/services/custom-message.service';
 import { RecoveryDialogComponent } from '../recovery-dialog/recovery-dialog.component';
@@ -28,6 +28,7 @@ import { RecoveryDialogComponent } from '../recovery-dialog/recovery-dialog.comp
 })
 export class LoginDialogComponent {
   readonly fb = inject(FormBuilder)
+  private readonly router = inject(Router)
   readonly _snackBar = inject(CustomMessageService)
   private readonly authSvc = inject(AuthService)
   private readonly jwtSvc = inject(JwtService)
@@ -48,6 +49,7 @@ export class LoginDialogComponent {
       next:r=>{
         this.jwtSvc.setToken(r)
         this._snackBar.showCustomMessage({message:'Inicio de sesión correcto', type:MessageType.success})
+        this.router.navigate(['/'])
       },
       error:e=>console.log(e)
     })
