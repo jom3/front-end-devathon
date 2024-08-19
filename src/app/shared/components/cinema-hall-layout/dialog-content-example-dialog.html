@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="header">
+    <div class="title">Payment method</div>
+    <i class="far fa-question-circle fa-2x"></i>
+  </div>
+
+  <div class="cards-body">
+    <div class="cards">
+      <a href="#">
+        <img
+          class="card"
+          src="https://icons.iconarchive.com/icons/designbolts/credit-card-payment/256/Visa-icon.png"
+          alt=""
+        />
+      </a>
+      <a href="#">
+        <img
+          class="card"
+          src="https://icons.iconarchive.com/icons/designbolts/credit-card-payment/256/Master-Card-icon.png"
+          alt=""
+        />
+      </a>
+    </div>
+    <form class="form-card" action="" method="">
+      <div class="name-card">
+        <div class="card-label">
+          <label for="name">Cardholder name</label>
+        </div>
+        <input
+          class="form-group"
+          type="text"
+          name="name-card"
+          placeholder="Diane Miles"
+        />
+      </div>
+      <div class="info-card">
+        <div class="info-card-number">
+          <div class="card-label">
+            <label for="cardName">Card number</label>
+          </div>
+          <input
+            class="form-group"
+            type="text"
+            name="cardnumber"
+            placeholder="1234 6573 8228 7373"
+          />
+        </div>
+        <div class="info-card-payment">
+          <div class="card-label">
+            <label for="date">Date</label>
+          </div>
+          <input
+            class="form-group"
+            type="text"
+            name="date"
+            placeholder="10/25"
+          />
+        </div>
+        <div class="info-card-payment">
+          <div class="card-label">
+            <label for="ccv">CCV</label>
+          </div>
+          <input class="form-group" type="text" name="ccv" placeholder="329" />
+        </div>
+      </div>
+    </form>
+    <div class="button-payment">
+      <button mat-flat-button (click)="pagar()">Pagar</button>
+    </div>
+  </div>
+  <p class="totalpayment">{{data.total | currency}}</p>
+  <div class="footer">
+    <i class="fas fa-info-circle fa-2x"></i>
+    <p class="text">Credit Card payments may take up to 24h to processed</p>
+  </div>
+</div>

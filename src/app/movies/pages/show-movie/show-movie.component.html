@@ -1,41 +1,33 @@
 <div class="container">
   <div class="movie-info__container">
-    @defer (on viewport()) {
-      <picture class="card__picture">
-        @if (movie().poster_path) {
-        <img
-          [src]="imagesBaseUrl + '/w300/' + movie().poster_path"
-          alt="{{ movie().title }}"
-          class="card__image"
-        />
-        }@else {
-        <img src="\images\no-poster-available.jpg" alt="" class="card__image" />
-        }
-      </picture>
-      <span class="card__title">Titulo original</span>
-      <hr />
-      <span class="card__text">{{ movie().title }}</span>
-      <span class="card__title">Descripción</span>
-      <hr />
-      <p class="movie__desc">{{ movie().overview }}</p>
-      <span class="card__title">Actores</span>
-      <hr />
-      <section class="cast__section">
-        @for (cast of movieCast() | slice:0:10; track cast.id) { @if
-        (cast.profile_path) {
-        <img
-          [src]="imagesBaseUrl + '/w185/' + cast.profile_path"
-          class="cast__image"
-        />
-        } }
-      </section>
-    } @placeholder {
-      <app-spinner />
-
-    } @loading {
-      <app-spinner />
-    }
-
+    <picture class="card__picture">
+      @if (movie().poster_path) {
+      <img
+        [src]="imagesBaseUrl + '/w300/' + movie().poster_path"
+        alt="{{ movie().title }}"
+        class="card__image"
+      />
+      }@else {
+      <img src="\images\no-poster-available.jpg" alt="" class="card__image" />
+      }
+    </picture>
+    <span class="card__title">Titulo original</span>
+    <hr />
+    <span class="card__text">{{ movie().title }}</span>
+    <span class="card__title">Descripción</span>
+    <hr />
+    <p class="movie__desc">{{ movie().overview }}</p>
+    <span class="card__title">Actores</span>
+    <hr />
+    <section class="cast__section">
+      @for (cast of movieCast() | slice:0:10; track cast.id) { @if
+      (cast.profile_path) {
+      <img
+        [src]="imagesBaseUrl + '/w185/' + cast.profile_path"
+        class="cast__image"
+      />
+      } }
+    </section>
   </div>
   <div class="movie-page__container">
     <router-outlet />
@@ -43,45 +35,48 @@
       <table mat-table [dataSource]="dataSource">
         <!-- Position Column -->
         <ng-container matColumnDef="title">
-          <th mat-header-cell *matHeaderCellDef>Title</th>
+          <th mat-header-cell *matHeaderCellDef>Titulo</th>
           <td mat-cell *matCellDef="let element">{{ element.title }}</td>
         </ng-container>
 
         Name Column
         <ng-container matColumnDef="cine">
-          <th mat-header-cell *matHeaderCellDef>Cinema name</th>
+          <th mat-header-cell *matHeaderCellDef>Centro Multicines</th>
           <td mat-cell *matCellDef="let element">{{ element.cine }}</td>
         </ng-container>
 
         Weight Column
         <ng-container matColumnDef="hall">
-          <th mat-header-cell *matHeaderCellDef>Cinema Hall</th>
+          <th mat-header-cell *matHeaderCellDef>Sala</th>
           <td mat-cell *matCellDef="let element">{{ element.sala }}</td>
         </ng-container>
 
         <!-- Symbol Column -->
         <ng-container matColumnDef="seats">
-          <th mat-header-cell *matHeaderCellDef>Total seats</th>
+          <th mat-header-cell *matHeaderCellDef>Numero de asientos</th>
           <td mat-cell *matCellDef="let element">{{ element.butacas }}</td>
         </ng-container>
 
         <!-- Symbol Column -->
         <ng-container matColumnDef="start">
-          <th mat-header-cell *matHeaderCellDef>Start:</th>
-          <td mat-cell *matCellDef="let element">{{ element.inicio }}</td>
+          <th mat-header-cell *matHeaderCellDef>Hora Comienzo</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.mesInicio }} {{ element.diaInicio }},
+            {{ element.inicio }}
+          </td>
         </ng-container>
 
         <!-- Symbol Column -->
         <ng-container matColumnDef="finish">
-          <th mat-header-cell *matHeaderCellDef>Finish</th>
-          <td mat-cell *matCellDef="let element">{{ element.fin }}</td>
+          <th mat-header-cell *matHeaderCellDef>Hora Finalizacion</th>
+          <td mat-cell *matCellDef="let element">{{ element.horaFin }}</td>
         </ng-container>
 
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef></th>
 
           <td mat-cell *matCellDef="let element">
-            <button mat-flat-button>Details</button>
+            <button mat-flat-button (click)="onClick(element)">Details</button>
           </td>
         </ng-container>
 
