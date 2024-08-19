@@ -140,7 +140,7 @@
           }
         </mat-form-field>
       </div>
-      <div>
+      <div class="checkbox__container">
         <mat-checkbox formControlName="IsChecked" required>Acepto el registro de esta información</mat-checkbox>
         @if (this.registerForm.controls.IsChecked.getError('required') && this.registerForm.controls.IsChecked.touched ) {
           <p class="form-input__error">El campo es requerido</p>
