@@ -1,0 +1,32 @@
+<section class="container">
+  <h1 mat-dialog-title>Términos y Condiciones de Uso</h1>
+  <mat-dialog-content>
+    <p>
+      Bienvenido a slowMovies, al acceder y utilizar nuestro servicio,
+      aceptas cumplir con los siguientes términos y condiciones.
+    </p>
+      <ol>
+        <li>Aceptación de los Términos Al utilizar nuestro sitio web, aceptas estos términos en su totalidad. Si no estás de acuerdo con alguna de estas condiciones, por favor, abstente de utilizar nuestro sitio.</li>
+        <li>Uso del Sitio Web Puedes utilizar nuestro sitio web para las reservas de tu películas favoritas.</li>
+        <li>Propiedad Intelectual Todo el contenido de nuestro sitio web, incluyendo texto, imágenes, logotipos y marcas comerciales, es propiedad de slowmovies o de sus licenciantes y está protegido por las leyes de propiedad intelectual</li>
+        <li>Limitación de Responsabilidad SlowMovies no se hace responsable por ningún daño directo, indirecto, incidental o consecuente que pueda surgir del uso o la imposibilidad de usar nuestro sitio web.</li>
+        <li>Modificaciones Nos reservamos el derecho de modificar estos términos y condiciones en cualquier momento. Te recomendamos revisar esta página periódicamente para estar al tanto de cualquier cambio.</li>
+        <li>Ley Aplicable Estos términos y condiciones se rigen por las leyes de cada país que tenga una de nuestras sucursales.</li>
+      </ol>
+
+    <h2 mat-dialog-title>Sin embargo, te comprometes a no:</h2>
+    <ol>
+    <li>Utilizar nuestro sitio web con fines ilegales o no autorizados.</li>
+    <li>Violar los derechos de propiedad intelectual de terceros.</li>
+    <li>Interferir con el funcionamiento de nuestro sitio web.</li>
+  </ol>
+
+  <p>
+    Contacto Si tienes alguna pregunta sobre estos términos y condiciones,
+    puedes contactarnos a través de <span class="email__text">{{email()}}</span>.
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Cerrar</button>
+</mat-dialog-actions>
+</section>

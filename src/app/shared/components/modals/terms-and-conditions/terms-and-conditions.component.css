@@ -1,0 +1,36 @@
+.container{
+  padding: 1rem;
+}
+.email__text{
+  font-weight: 500;
+}
+mat-dialog-actions{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+mat-dialog-actions > button {
+  border-radius: .3rem
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-track-piece {
+  background-color: #ccc;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: #999;
+}
