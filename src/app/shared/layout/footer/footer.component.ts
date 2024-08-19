@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TermsAndConditionsComponent } from '../../components/modals/terms-and-conditions/terms-and-conditions.component';
+import { PrivacyStatementComponent } from '../../components/modals/privacy-statement/privacy-statement.component';
 
 @Component({
   selector: 'app-footer',
@@ -14,5 +15,9 @@ export class FooterComponent {
 
   openTermsAndConditionsDialog(): void {
     this.dialog.open(TermsAndConditionsComponent,{});
+  }
+
+  openPrivacyStatement(): void {
+    this.dialog.open(PrivacyStatementComponent,{});
   }
 }
