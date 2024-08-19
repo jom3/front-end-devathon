@@ -23,6 +23,7 @@ import { environment } from '../../../../environments/environment.development';
 import { Cast } from '../../../shared/models/credit.interface';
 import { Movie } from '../../../shared/models/movie.interface';
 import { MaterialModule } from '../../../shared/modules/material/material.module';
+import { SpinnerComponent } from '../../../shared/components/spinner/spinner.component';
 
 const initialMovieState = {
   adult: false,
@@ -52,6 +53,7 @@ const initialMovieState = {
     RouterOutlet,
     JsonPipe,
     MaterialModule,
+    SpinnerComponent
   ],
   templateUrl: './show-movie.component.html',
   styleUrl: './show-movie.component.css',

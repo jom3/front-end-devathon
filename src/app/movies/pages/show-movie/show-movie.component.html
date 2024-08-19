@@ -1,33 +1,41 @@
 <div class="container">
   <div class="movie-info__container">
-    <picture class="card__picture">
-      @if (movie().poster_path) {
-      <img
-        [src]="imagesBaseUrl + '/w300/' + movie().poster_path"
-        alt="{{ movie().title }}"
-        class="card__image"
-      />
-      }@else {
-      <img src="\images\no-poster-available.jpg" alt="" class="card__image" />
-      }
-    </picture>
-    <span class="card__title">Titulo original</span>
-    <hr />
-    <span class="card__text">{{ movie().title }}</span>
-    <span class="card__title">Descripción</span>
-    <hr />
-    <p class="movie__desc">{{ movie().overview }}</p>
-    <span class="card__title">Actores</span>
-    <hr />
-    <section class="cast__section">
-      @for (cast of movieCast() | slice:0:10; track cast.id) { @if
-      (cast.profile_path) {
-      <img
-        [src]="imagesBaseUrl + '/w185/' + cast.profile_path"
-        class="cast__image"
-      />
-      } }
-    </section>
+    @defer (on viewport()) {
+      <picture class="card__picture">
+        @if (movie().poster_path) {
+        <img
+          [src]="imagesBaseUrl + '/w300/' + movie().poster_path"
+          alt="{{ movie().title }}"
+          class="card__image"
+        />
+        }@else {
+        <img src="\images\no-poster-available.jpg" alt="" class="card__image" />
+        }
+      </picture>
+      <span class="card__title">Titulo original</span>
+      <hr />
+      <span class="card__text">{{ movie().title }}</span>
+      <span class="card__title">Descripción</span>
+      <hr />
+      <p class="movie__desc">{{ movie().overview }}</p>
+      <span class="card__title">Actores</span>
+      <hr />
+      <section class="cast__section">
+        @for (cast of movieCast() | slice:0:10; track cast.id) { @if
+        (cast.profile_path) {
+        <img
+          [src]="imagesBaseUrl + '/w185/' + cast.profile_path"
+          class="cast__image"
+        />
+        } }
+      </section>
+    } @placeholder {
+      <app-spinner />
+
+    } @loading {
+      <app-spinner />
+    }
+
   </div>
   <div class="movie-page__container">
     <router-outlet />
