@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { TermsAndConditionsComponent } from '../../components/modals/terms-and-conditions/terms-and-conditions.component';
 
 @Component({
   selector: 'app-footer',
@@ -7,4 +9,10 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
 })
-export class FooterComponent { }
+export class FooterComponent {
+  readonly dialog = inject(MatDialog);
+
+  openTermsAndConditionsDialog(): void {
+    this.dialog.open(TermsAndConditionsComponent,{});
+  }
+}
