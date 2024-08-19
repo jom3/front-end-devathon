@@ -1,0 +1,77 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: arial, sans-serif;
+  text-decoration: none;
+}
+.container {
+  margin: 0.5rem;
+  background-color: #eee;
+  border-radius: 5px;
+  border: 2px solid #ddd;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-bottom: 2px solid #ddd;
+  color: #555;
+}
+.header .title {
+  font-size: 32px;
+}
+
+.cards-body {
+  padding: 0 1.5rem;
+}
+.cards-body .cards img {
+  width: 100px;
+}
+.form-card .card-label {
+  font-size: 24px;
+  color: #555;
+  margin: 1rem 0 0.5rem 0;
+}
+.form-card .form-group {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1.5px solid #b1deff;
+  font-size: 1.15rem;
+}
+.form-card .info-card {
+  display: flex;
+}
+.form-card .info-card-number {
+  flex: 70%;
+}
+.form-card .info-card-payment {
+  flex: 30%;
+  margin-left: 0.5rem;
+}
+.footer {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
+}
+.footer i {
+  padding-right: 0.5rem;
+  color: #38a1ef;
+}
+
+.button-payment {
+  margin-top: 30px;
+  width: 100%;
+}
+
+.totalpayment {
+  font-size: large;
+  margin-top: 30px;
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+}

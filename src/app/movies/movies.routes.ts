@@ -1,18 +1,34 @@
 import { Routes } from '@angular/router';
-import { authGuard } from '../shared';
 
 export const MOVIES_ROUTES: Routes = [
   {
     path: '',
-    loadComponent:()=>import('./pages/movies/movies-page.component').then(c=>c.MoviesPageComponent)
+    loadComponent: () =>
+      import('./pages/movies/movies-page.component').then(
+        (c) => c.MoviesPageComponent
+      ),
   },
   {
     path: 'showmovie/:movieId',
-    loadComponent:()=>import('./pages/show-movie/show-movie.component').then(c=>c.ShowMovieComponent),
-    children:[
+    loadComponent: () =>
+      import('./pages/show-movie/show-movie.component').then(
+        (c) => c.ShowMovieComponent
+      ),
+    children: [
       {
-        path:'',
-        loadComponent:()=> import('./pages/movie-ticket-page/movie-ticket-page.component').then(c=>c.MovieTicketPageComponent)      }
-    ]
+        path: '',
+        loadComponent: () =>
+          import('./pages/movie-ticket-page/movie-ticket-page.component').then(
+            (c) => c.MovieTicketPageComponent
+          ),
+      },
+    ],
+  },
+  {
+    path: 'booking',
+    loadComponent: () =>
+      import(
+        '.././shared/components/cinema-hall-layout/cinema-hall-layout.component'
+      ).then((c) => c.CinemaHallLayoutComponent),
   },
 ];

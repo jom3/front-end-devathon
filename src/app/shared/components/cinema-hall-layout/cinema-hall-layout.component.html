@@ -1,11 +1,60 @@
 <div class="container">
+  <div style="width: 30%; float: right">
+    <mat-card class="card-container">
+      <picture class="card__picture">
+        @if (movie().poster_path) {
+        <img
+          [src]="imagesBaseUrl + '/w300/' + movie().poster_path"
+          alt="{{ movie().title }}"
+          class="card__image"
+        />
+        }@else {
+        <img src="\images\no-poster-available.jpg" alt="" class="card__image" />
+        }
+      </picture>
+      <hr />
+      <span class="card_text">{{ movie().title }}!</span>
+      <span class="card__title">Descripción</span>
+      <hr />
+      <p class="movie__desc">{{ movie().overview }}</p>
+      <span class="card__title">Actores</span>
+      <hr />
+      <section class="cast__section">
+        @for (cast of movieCast() | slice:0:10; track cast.id) { @if
+        (cast.profile_path) {
+        <img
+          [src]="imagesBaseUrl + '/w185/' + cast.profile_path"
+          alt="{{ cast.name }}"
+          class="cast__image"
+        />
+        } }
+      </section>
+      <div class="precios">
+        <h6>Precios Butacas</h6>
+        <div *ngFor="let row of seatsPrices" style="margin-top: 2%">
+          <span
+            >{{ row?.['type'] }} {{ row?.['price'] | currency: 'USD' }}</span
+          >
+        </div>
+      </div>
+    </mat-card>
+  </div>
   <main class="innerContainer">
     <div class="movie">
-      <h3 class="movieTitle">{{ cinemaHallDescription }}</h3>
+      <h2 class="movieTitle">{{ data.title }}</h2>
+      <span class="material-symbols-outlined calendar"> calendar_month </span>
+      {{ data.mesInicio }}, {{ data.diaInicio }}
+      <span class="material-symbols-outlined">
+        nest_clock_farsight_analog
+      </span>
+      {{ data.inicio }}
+      <span class="material-symbols-outlined"> movie </span>
+      {{ data.sala }}
     </div>
 
-    <p class="font14 marginTop5">SCREEN THIS WAY</p>
     <div class="screen"></div>
+
+    <h3 class="screenText">SCREEN THIS WAY</h3>
 
     <!-- Generate the seating grid -->
     <div *ngFor="let row of rows" style="margin-top: 2%">
@@ -18,9 +67,10 @@
         <span
           class="material-symbols-outlined"
           [ngClass]="{
+            ocupado: numbersOfSeatsNotAvailable.includes(row + col),
             standard: !vip.includes(row + col) && !premium.includes(row + col),
-            reclinable: vip.includes(row + col),
-            deluxe: premium.includes(row + col)
+            vip: vip.includes(row + col),
+            premium: premium.includes(row + col),
           }"
         >
           living
@@ -42,7 +92,8 @@
         <span
           class="material-symbols-outlined"
           [ngClass]="{
-            reclinable: true
+            vip: true,
+            leyenda: true
           }"
         >
           living
@@ -50,14 +101,67 @@
         <span
           class="material-symbols-outlined"
           [ngClass]="{
-            deluxe: true
+            premium: true,
+            leyenda: true
           }"
         >
           living
         </span>
-        <h5>STANDARD | VIP | DELUXE</h5>
+        <span
+          class="material-symbols-outlined"
+          [ngClass]="{
+            ocupado: true,
+            leyenda: true
+          }"
+        >
+          living
+        </span>
+        <div>
+          <span class="leyenda">STANDARD</span>
+          <span class="leyenda">VIP</span>
+          <span class="leyenda">PREMIUM</span>
+          <span class="leyenda">OCUPADO</span>
+        </div>
       </div>
-      <div class="column1"></div>
     </div>
+
+    <div class="seleccionadas" *ngIf="selectedSeats.length">
+      <h6>Butacas Seleccionadas</h6>
+      <div *ngFor="let row of selectedSeats">
+        <span
+          >Tipo:{{ row.type }} Locacion:{{ row.position }} Precio:
+          {{ row.price | currency : "USD" }}</span
+        >
+      </div>
+      <div class="buton-rowt">Total {{ total | currency : "USD" }}</div>
+      <div class="button-row">
+        <button mat-raised-button color="primary" (click)="openDialog()">
+          Comprar
+        </button>
+      </div>
+    </div>
+
+    <!-- <div class="column1">
+      <h5>Butacas vendidas</h5>
+      <div *ngFor="let row of seatsNotAvailable" style="margin-top: 2%">
+        <span>{{ row?.['type'] }} {{ row?.['cinemaSeatID'] }}</span>
+      </div>
+    </div> -->
   </main>
 </div>
+
+<!-- {{ seatsPrices | json }}
+
+<pre>
+  {{ data | json }}
+</pre> -->
+
+<!-- {{ numbersOfSeatsNotAvailable | json }}
+
+<pre>
+  {{ data | json }}
+</pre> -->
+
+<!-- <pre>
+  {{ seatsAvailable | json }}
+</pre> -->

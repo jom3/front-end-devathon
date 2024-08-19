@@ -18,12 +18,11 @@ import {
   SlicePipe,
 } from '@angular/common';
 import { MatPaginator } from '@angular/material/paginator';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { environment } from '../../../../environments/environment.development';
 import { Cast } from '../../../shared/models/credit.interface';
 import { Movie } from '../../../shared/models/movie.interface';
 import { MaterialModule } from '../../../shared/modules/material/material.module';
-import { SpinnerComponent } from '../../../shared/components/spinner/spinner.component';
 
 const initialMovieState = {
   adult: false,
@@ -53,7 +52,6 @@ const initialMovieState = {
     RouterOutlet,
     JsonPipe,
     MaterialModule,
-    SpinnerComponent
   ],
   templateUrl: './show-movie.component.html',
   styleUrl: './show-movie.component.css',
@@ -80,6 +78,7 @@ export class ShowMovieComponent implements AfterViewInit {
   public movieCast = signal<Cast[]>([]);
   public similarMovies = signal<Movie[]>([]);
   public imagesBaseUrl = environment.imagesBaseUrl;
+  readonly router = inject(Router);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -113,5 +112,9 @@ export class ShowMovieComponent implements AfterViewInit {
     this.moviesSvc.getSimilarMovies(id).subscribe({
       next: (r) => this.similarMovies.set(r),
     });
+  }
+
+  onClick(element: any) {
+    this.router.navigate([`/movies/booking`], { state: element });
   }
 }
