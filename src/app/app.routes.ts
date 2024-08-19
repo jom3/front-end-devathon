@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authInverseGuard } from './shared/guards/auth-inverse.guard';
 
 export const routes: Routes = [
   {
@@ -7,11 +8,13 @@ export const routes: Routes = [
   },
   {
     path:'auth',
-    loadChildren:()=>import('./auth/auth-routing').then(r=>r.routes)
+    loadChildren:()=>import('./auth/auth-routing').then(r=>r.routes),
+    canActivate:[authInverseGuard]
   },
   {
     path:'user/update-user/:id',
-    loadComponent:()=>import('./auth/pages/register-page/register-page.component').then(c=>c.RegisterPageComponent)
+    loadComponent:()=>import('./auth/pages/register-page/register-page.component').then(c=>c.RegisterPageComponent),
+    canActivate:[authInverseGuard]
   },
   {
     path: 'movies',
