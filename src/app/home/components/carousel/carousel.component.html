@@ -3,7 +3,7 @@
     <swiper-container speed="2000" autoplay="true" allowTouchMove="true">
       @for (movie of movies() | slice:0:5; track movie.id) {
       <swiper-slide>
-        <picture class="carousel__picture">
+        <picture class="carousel__picture" [routerLink]="['/movies/showmovie/',movie.id]" >
           <img
             src="https://image.tmdb.org/t/p/original/{{ movie.backdrop_path }}"
             alt="movie_img"

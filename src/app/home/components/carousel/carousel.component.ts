@@ -3,12 +3,13 @@ import { register } from 'swiper/element/bundle';
 import { SlicePipe } from '@angular/common';
 import { MoviesService } from '../../../shared/services/movies.service';
 import { Movie } from '../../../shared/models/movie.interface';
+import { RouterLink } from '@angular/router';
 register();
 
 @Component({
   selector: 'home-carousel',
   standalone: true,
-  imports: [SlicePipe],
+  imports: [SlicePipe, RouterLink],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './carousel.component.html',
   styleUrl: './carousel.component.css'
