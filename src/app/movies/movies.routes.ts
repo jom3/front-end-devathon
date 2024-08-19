@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from '../shared';
 
 export const MOVIES_ROUTES: Routes = [
   {
@@ -10,8 +11,8 @@ export const MOVIES_ROUTES: Routes = [
     loadComponent:()=>import('./pages/show-movie/show-movie.component').then(c=>c.ShowMovieComponent),
     children:[
       {
-        path:'', loadComponent:()=> import('./pages/movie-ticket-page/movie-ticket-page.component').then(c=>c.MovieTicketPageComponent)
-      }
+        path:'',
+        loadComponent:()=> import('./pages/movie-ticket-page/movie-ticket-page.component').then(c=>c.MovieTicketPageComponent)      }
     ]
   },
 ];
