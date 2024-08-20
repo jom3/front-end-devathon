@@ -22,6 +22,7 @@ export class AuthService {
   }
 
   signIn(email: string, password: string): Observable<string> {
+    //saving email in local storage for booking payload
     localStorage.setItem('email', email);
     return this.http
       .post<TokenResponse>(`${this.baseUrl}/auth/signin`, { email, password })
