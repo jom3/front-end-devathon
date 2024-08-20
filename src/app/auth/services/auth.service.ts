@@ -22,6 +22,7 @@ export class AuthService {
   }
 
   signIn(email: string, password: string): Observable<string> {
+    localStorage.setItem('email', email);
     return this.http
       .post<TokenResponse>(`${this.baseUrl}/auth/signin`, { email, password })
       .pipe(map((response: TokenResponse) => response.token));
@@ -44,6 +45,7 @@ export class AuthService {
 
   getCurrentUser() {
     const email = localStorage.getItem('email');
+    console.log(email);
     return this.http.get<User>(`${this.baseUrl}/users/findUser/${email}`);
   }
 }
