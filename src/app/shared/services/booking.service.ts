@@ -12,4 +12,8 @@ export class BookingService {
   setBooking(booking: any) {
     return this.http.post(`${this.baseUrl}/bookings`, booking);
   }
+
+  getConfirmedBookings() {
+    return this.http.get(`${this.baseUrl}/bookings/payed`);
+  }
 }

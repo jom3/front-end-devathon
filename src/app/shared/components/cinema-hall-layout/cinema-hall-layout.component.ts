@@ -5,7 +5,7 @@ import {
   JsonPipe,
   Location,
 } from '@angular/common';
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, model, OnInit, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
@@ -18,6 +18,9 @@ import { BookingService } from '../../services/booking.service';
 import { MoviesService } from '../../services/movies.service';
 import { CinemaHallService } from './../../services/cinema-hall.service';
 import { DialogContentExampleDialog } from './dialog-content-example-dialog';
+import { CustomMessageService } from '../../services';
+import { RecoveryDialogComponent } from '../../../auth/components/recovery-dialog/recovery-dialog.component';
+import { GenericConfirmationComponent } from '../generic-confirmation/generic-confirmation.component';
 
 const initialMovieState = {
   adult: false,
@@ -52,7 +55,7 @@ const initialMovieState = {
 })
 export class CinemaHallLayoutComponent implements OnInit {
   readonly dialog = inject(MatDialog);
-
+  pagado: boolean = false;
   readonly router = inject(Router);
   private readonly moviesSvc = inject(MoviesService);
   public movie = signal<Movie>(initialMovieState);
@@ -128,50 +131,46 @@ export class CinemaHallLayoutComponent implements OnInit {
 
   //click handler
   seatClicked(fila: string, columna: number) {
-    if (this.numbersOfSeatsNotAvailable.includes(fila + columna)) {
-      alert('Butaca no disponible');
-      return;
-    }
+    let dialogRef = this.dialog.open(GenericConfirmationComponent, {
+      data: `Deseas seleccionar esta butaca?`,
+    });
 
-    if (this.vip.includes(`${fila}${columna}`)) {
-      const confirmacion = confirm('¿Desea seleccionar esta butaca?');
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res.data) {
+        if (this.numbersOfSeatsNotAvailable.includes(fila + columna)) {
+          alert('Butaca no disponible');
+          return;
+        }
 
-      if (confirmacion) {
-        this.selectedSeats.push({
-          position: `${fila}${columna}`,
-          type: 'VIP',
-          price: this.getPriceForTypeOfSeat('VIP'),
-        });
-        this.numbersOfSeatsNotAvailable.push(`${fila}${columna}`);
-        this.total = this.total + this.getPriceForTypeOfSeat('VIP');
-      }
-    } else if (this.premium.includes(fila + columna)) {
-      const confirmacion = confirm('¿Desea seleccionar esta butaca?');
-
-      if (confirmacion) {
-        this.selectedSeats.push({
-          position: `${fila}${columna}`,
-          type: 'PREMIUM',
-          price: this.getPriceForTypeOfSeat('PREMIUM'),
-        });
-        this.numbersOfSeatsNotAvailable.push(`${fila}${columna}`);
-        this.total = this.total + this.getPriceForTypeOfSeat('PREMIUM');
-      }
-    } else {
-      const confirmacion = confirm('¿Desea seleccionar esta butaca?');
-
-      if (confirmacion) {
-        this.selectedSeats.push({
-          position: `${fila}${columna}`,
-          type: 'STANDARD',
-          price: this.getPriceForTypeOfSeat('STANDARD'),
-        });
-        this.numbersOfSeatsNotAvailable.push(`${fila}${columna}`);
-        this.total = this.total + this.getPriceForTypeOfSeat('STANDARD');
-      }
-    }
-    let seatPos = `${fila}${columna}`;
-    let naturalNumber = this.cinemaHallSvc.getSeatPosition(fila, columna);
+        if (this.vip.includes(`${fila}${columna}`)) {
+          this.selectedSeats.push({
+            position: `${fila}${columna}`,
+            type: 'VIP',
+            price: this.getPriceForTypeOfSeat('VIP'),
+          });
+          this.numbersOfSeatsNotAvailable.push(`${fila}${columna}`);
+          this.total = this.total + this.getPriceForTypeOfSeat('VIP');
+        } else if (this.premium.includes(fila + columna)) {
+          this.selectedSeats.push({
+            position: `${fila}${columna}`,
+            type: 'PREMIUM',
+            price: this.getPriceForTypeOfSeat('PREMIUM'),
+          });
+          this.numbersOfSeatsNotAvailable.push(`${fila}${columna}`);
+          this.total = this.total + this.getPriceForTypeOfSeat('PREMIUM');
+        } else {
+          this.selectedSeats.push({
+            position: `${fila}${columna}`,
+            type: 'STANDARD',
+            price: this.getPriceForTypeOfSeat('STANDARD'),
+          });
+          this.numbersOfSeatsNotAvailable.push(`${fila}${columna}`);
+          this.total = this.total + this.getPriceForTypeOfSeat('STANDARD');
+        }
+        let seatPos = `${fila}${columna}`;
+        let naturalNumber = this.cinemaHallSvc.getSeatPosition(fila, columna);
+      } // received data from confirm-component
+    });
   }
 
   getMovieById(id: number) {
@@ -199,12 +198,14 @@ export class CinemaHallLayoutComponent implements OnInit {
 
   onBuy() {
     if (this.selectedSeats.length > 0) {
-      console.log(this.selectedSeats);
+      this.selectedSeats = [];
+      this.total = 0;
     }
   }
 
-  openDialog() {
+  openDialogPayment() {
     const dialogRef = this.dialog.open(DialogContentExampleDialog, {
+      width: '550px',
       data: {
         selected: this.selectedSeats,
         user: this.user,
@@ -215,6 +216,18 @@ export class CinemaHallLayoutComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
+      this.selectedSeats = [];
+      this.total = 0;
+    });
+  }
+
+  openDialog() {
+    let dialogRef = this.dialog.open(GenericConfirmationComponent, {
+      data: `Deseas seleccionar esta butaca?`,
+    });
+
+    dialogRef.afterClosed().subscribe((res) => {
+      alert(res.data); // received data from confirm-component
     });
   }
 }
