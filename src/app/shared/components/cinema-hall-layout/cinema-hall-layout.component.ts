@@ -131,6 +131,10 @@ export class CinemaHallLayoutComponent implements OnInit {
 
   //click handler
   seatClicked(fila: string, columna: number) {
+    if (this.numbersOfSeatsNotAvailable.includes(fila + columna)) {
+      alert('Butaca no disponible');
+      return;
+    }
     let dialogRef = this.dialog.open(GenericConfirmationComponent, {
       data: `Deseas seleccionar esta butaca?`,
     });
@@ -205,7 +209,6 @@ export class CinemaHallLayoutComponent implements OnInit {
 
   openDialogPayment() {
     const dialogRef = this.dialog.open(DialogContentExampleDialog, {
-      width: '550px',
       data: {
         selected: this.selectedSeats,
         user: this.user,
