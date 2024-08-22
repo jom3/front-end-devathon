@@ -1,0 +1,71 @@
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title> Relacion de Reservas</mat-card-title>
+    <mat-card-subtitle>Ocean Drive Cinemas</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource">
+        <!-- Position Column -->
+        <ng-container matColumnDef="fullName">
+          <th mat-header-cell *matHeaderCellDef>Full Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.fullName }}</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="bookingID">
+          <th mat-header-cell *matHeaderCellDef>Booking</th>
+          <td mat-cell *matCellDef="let element">{{ element.bookingID }}</td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="nbutaca">
+          <th mat-header-cell *matHeaderCellDef>Numero Butaca</th>
+          <td mat-cell *matCellDef="let element">{{ element.nbutaca }}</td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="estado">
+          <th mat-header-cell *matHeaderCellDef>Estado</th>
+          <td mat-cell *matCellDef="let element">{{ element.estado }}</td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="monto">
+          <th mat-header-cell *matHeaderCellDef>Importe</th>
+          <td mat-cell *matCellDef="let element">{{ element.monto }}</td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef>Proyeccion</th>
+          <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="freserva">
+          <th mat-header-cell *matHeaderCellDef>Fecha</th>
+          <td mat-cell *matCellDef="let element">{{ element.freserva }}</td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="horapelicula">
+          <th mat-header-cell *matHeaderCellDef>Hora</th>
+          <td mat-cell *matCellDef="let element">{{ element.horapelicula }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator
+        [pageSizeOptions]="[20, 30, 40]"
+        showFirstLastButtons
+        aria-label="Select page of periodic elements"
+      >
+      </mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>
+<br />

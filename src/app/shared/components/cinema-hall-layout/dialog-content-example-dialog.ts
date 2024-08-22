@@ -1,6 +1,6 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, inject, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MaterialModule } from '../../modules/material/material.module';
 import { BookingService } from '../../services/booking.service';
 import { CinemaHallService } from '../../services/cinema-hall.service';
@@ -13,7 +13,11 @@ import { CinemaHallService } from '../../services/cinema-hall.service';
   imports: [MaterialModule, CurrencyPipe],
 })
 export class DialogContentExampleDialog {
-  @Inject(MAT_DIALOG_DATA) public data: any;
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogRef: MatDialogRef<DialogContentExampleDialog>
+  ) {}
+
   bookingSvc = inject(BookingService);
   cinemaHallSvc = inject(CinemaHallService);
   pagar() {
@@ -37,13 +41,9 @@ export class DialogContentExampleDialog {
       });
 
     this.bookingSvc.setBooking(payload).subscribe((data: any) => {
-      console.log(data);
+      this.dialogRef.close({ data: true });
     });
     // update Show_Seats table with selected seats
     // create a new booking record
-  }
-
-  constructor(@Inject(MAT_DIALOG_DATA) data: any) {
-    this.data = data;
   }
 }
