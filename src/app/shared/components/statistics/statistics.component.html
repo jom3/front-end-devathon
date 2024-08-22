@@ -8,9 +8,18 @@
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource">
         <!-- Position Column -->
+        <ng-container matColumnDef="avatar">
+          <th mat-header-cell *matHeaderCellDef>#</th>
+          <td mat-cell *matCellDef="let element">
+            <div mat-card-avatar class="example-header-image"></div>
+          </td>
+        </ng-container>
+        <!-- Position Column -->
         <ng-container matColumnDef="fullName">
           <th mat-header-cell *matHeaderCellDef>Full Name</th>
-          <td mat-cell *matCellDef="let element">{{ element.fullName }}</td>
+          <td mat-cell *matCellDef="let element">
+            {{ element.fullName }}
+          </td>
         </ng-container>
 
         <!-- Name Column -->
@@ -28,7 +37,13 @@
         <!-- Symbol Column -->
         <ng-container matColumnDef="estado">
           <th mat-header-cell *matHeaderCellDef>Estado</th>
-          <td mat-cell *matCellDef="let element">{{ element.estado }}</td>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            [ngClass]="{ pagado: element.estado, red: !element.estado }"
+          >
+            {{ element.estado }}
+          </td>
         </ng-container>
 
         <!-- Symbol Column -->

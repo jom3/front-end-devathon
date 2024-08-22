@@ -43,7 +43,5 @@ export class DialogContentExampleDialog {
     this.bookingSvc.setBooking(payload).subscribe((data: any) => {
       this.dialogRef.close({ data: true });
     });
-    // update Show_Seats table with selected seats
-    // create a new booking record
   }
 }

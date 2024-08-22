@@ -1,3 +1,27 @@
 table {
   width: 100%;
 }
+
+.pagado {
+  color: green;
+  font-weight: bolder;
+}
+
+td {
+  font-weight: bolder;
+}
+
+th {
+  font-weight: bolder;
+}
+
+mat-card-title {
+  font-weight: bolder;
+  margin: 0 auto;
+  text-align: center !important;
+  float: right;
+}
+.example-header-image {
+  background-image: url("https://imgs.search.brave.com/VuWDnxp1vZS4g-N7PeO81LBfEFjprKaBXfRbJsgEtis/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wdWIt/c3RhdGljLmZvdG9y/LmNvbS9hc3NldHMv/cHJvamVjdHMvcGFn/ZXMvMjRmZjA1MmJj/YjUwNDFlZmI1N2I2/ODEyNTM1MWZiNWYv/Zm90b3ItYzFmZWFi/NWI2NDM2NDJkY2Jl/YTQ5NzFhMDVlYzEw/YTEuanBn");
+  background-size: cover;
+}

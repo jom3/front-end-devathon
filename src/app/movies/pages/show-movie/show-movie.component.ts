@@ -23,6 +23,7 @@ import { environment } from '../../../../environments/environment.development';
 import { Cast } from '../../../shared/models/credit.interface';
 import { Movie } from '../../../shared/models/movie.interface';
 import { MaterialModule } from '../../../shared/modules/material/material.module';
+import { AuthService } from '../../../auth/services';
 
 const initialMovieState = {
   adult: false,
@@ -79,7 +80,7 @@ export class ShowMovieComponent implements AfterViewInit {
   public similarMovies = signal<Movie[]>([]);
   public imagesBaseUrl = environment.imagesBaseUrl;
   readonly router = inject(Router);
-
+  readonly userSvc = inject(AuthService);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {

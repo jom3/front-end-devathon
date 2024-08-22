@@ -185,7 +185,7 @@ th {
   font-size: 20px;
   border-radius: 5px;
   border: 10px dotted;
-  width: 350px;
+  max-width: fit-content;
   padding-bottom: 20px;
   margin: 0 auto;
   margin-bottom: 30px;
@@ -201,7 +201,7 @@ th {
   font-size: 20px;
   border-radius: 10px;
   border: 10px dotted;
-  width: 450px;
+  max-width: fit-content;
   padding-bottom: 20px;
   margin: 0 auto;
 }
@@ -251,4 +251,9 @@ th {
 
 .material-symbols-outlined {
   cursor: pointer;
+}
+
+.mat-dialog-container > * {
+  display: flex;
+  flex-direction: column;
 }

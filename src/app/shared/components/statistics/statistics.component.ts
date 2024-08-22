@@ -3,17 +3,19 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MaterialModule } from '../../modules/material/material.module';
 import { BookingService } from '../../services/booking.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-statistics',
   standalone: true,
-  imports: [MaterialModule],
+  imports: [MaterialModule, CommonModule],
   templateUrl: './statistics.component.html',
   styleUrl: './statistics.component.css',
 })
 export class StatisticsComponent implements AfterViewInit {
   bookingSvc = inject(BookingService);
   displayedColumns: string[] = [
+    'avatar',
     'fullName',
     'bookingID',
     'nbutaca',
