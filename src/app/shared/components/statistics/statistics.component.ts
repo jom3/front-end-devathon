@@ -40,6 +40,7 @@ export class StatisticsComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.bookingSvc.getConfirmedBookings().subscribe((r: any) => {
+      r = r.sort((a: any, b: any) => b.bookingID - a.bookingID);
       this.dataSource.data = r;
     });
     this.dataSource.paginator = this.paginator;
@@ -93,3 +94,13 @@ export interface PayedBooking {
   freserva: string;
   horapelicula: string;
 }
+
+export const compare = (a: any, b: any) => {
+  if (a.bookingID < b.bookingID) {
+    return -1;
+  }
+  if (a.bookingID > b.bookingID) {
+    return 1;
+  }
+  return 0;
+};

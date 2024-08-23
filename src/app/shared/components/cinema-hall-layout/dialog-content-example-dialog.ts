@@ -5,6 +5,7 @@ import { MaterialModule } from '../../modules/material/material.module';
 import { BookingService } from '../../services/booking.service';
 import { CinemaHallService } from '../../services/cinema-hall.service';
 import { Router } from '@angular/router';
+import { delay, tap } from 'rxjs';
 
 @Component({
   selector: 'dialog-content',
@@ -45,19 +46,27 @@ export class DialogContentExampleDialog {
     });
 
     this.bookingSvc
-      .getBookingById(payload.userID, this.data.showID)
+      .getBookingById(payload?.userID, this.data?.showID)
+      .pipe(
+        tap((data) => {
+          delay(500);
+        })
+      )
       .subscribe((data: any) => {
+        data = data.sort((a: any, b: any) => b.bookingID - a.bookingID);
+        // al comenzar en cero el array
+        let ultimo = data[0];
+        console.log('ultimo booking ', data);
+
         data = {
-          boodingId: data[data.length - 1].bookingID,
-          start_hour: data[data.length - 1].horapelicula,
-          movie_title: data[data.length - 1].title,
-          movie_date: data[data.length - 1].freserva,
-          fullName: data[data.length - 1].fullName,
+          boodingId: ultimo?.bookingID,
+          start_hour: ultimo?.horapelicula,
+          movie_title: ultimo?.title,
+          movie_date: ultimo?.freserva,
+          fullName: ultimo?.fullName,
           email: 'mbakalitahiri@hotmail.com',
         };
-
         //tengo userID y showID, tengo que conseguir el bookingID
-
         this.bookingSvc.getEmailBooking(data).subscribe((data: any) => {});
       });
   }
