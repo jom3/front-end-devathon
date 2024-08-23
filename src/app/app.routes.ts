@@ -32,6 +32,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'payment-success',
+    loadComponent: () =>
+      import(
+        './shared/components/payment-confirmation/payment-confirmation.component'
+      ).then((m) => m.PaymentConfirmationComponent),
+  },
+  {
     path: '**',
     redirectTo: '/',
     pathMatch: 'full',

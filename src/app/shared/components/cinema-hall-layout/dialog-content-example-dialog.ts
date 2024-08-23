@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MaterialModule } from '../../modules/material/material.module';
 import { BookingService } from '../../services/booking.service';
 import { CinemaHallService } from '../../services/cinema-hall.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'dialog-content',
@@ -13,6 +14,7 @@ import { CinemaHallService } from '../../services/cinema-hall.service';
   imports: [MaterialModule, CurrencyPipe],
 })
 export class DialogContentExampleDialog {
+  router = inject(Router);
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DialogContentExampleDialog>
