@@ -15,6 +15,7 @@ import {
   CurrencyPipe,
   DatePipe,
   JsonPipe,
+  NgIf,
   SlicePipe,
 } from '@angular/common';
 import { MatPaginator } from '@angular/material/paginator';
@@ -53,6 +54,7 @@ const initialMovieState = {
     RouterOutlet,
     JsonPipe,
     MaterialModule,
+    NgIf,
   ],
   templateUrl: './show-movie.component.html',
   styleUrl: './show-movie.component.css',

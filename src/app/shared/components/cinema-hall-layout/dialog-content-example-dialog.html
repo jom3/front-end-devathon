@@ -72,11 +72,12 @@
         </div>
       </div>
     </form>
-    <div class="button-payment">
-      <button mat-flat-button (click)="pagar()">Pagar</button>
-    </div>
   </div>
-  <p class="totalpayment">{{data.total | currency}}</p>
+  <p class="totalpayment">
+    Importe a pagar <strong>{{data.total | currency}}</strong>
+    <br />
+    <button (click)="pagar()" mat-raised-button color="primary">Pagar</button>
+  </p>
   <div class="footer">
     <i class="fas fa-info-circle fa-2x"></i>
     <p class="text">Credit Card payments may take up to 24h to processed</p>
