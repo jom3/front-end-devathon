@@ -6,5 +6,8 @@ export const environment = {
   language: 'es-MX',
 
   //*Servidor propio
-  baseUrl: 'http://localhost:8080/api',
+  baseUrl: 'http://localhost:3000/api',
+
+  //* Google Server
+  googleClientId: '264316509721-qcg4720kqj4k104mqk4ojlljfch4vvh9.apps.googleusercontent.com'
 };

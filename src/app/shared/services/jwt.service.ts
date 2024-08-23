@@ -24,6 +24,11 @@ export class JwtService {
     this.isLogged.set(true)
   }
 
+  setTokenGoogle(token:string){
+    sessionStorage.setItem('tokenGoogle', token)
+    this.isLogged.set(true)
+  }
+
   removeToken(){
     localStorage.removeItem('token')
     this.isLogged.set(false)
@@ -47,5 +52,4 @@ export class JwtService {
       return decodedToken;
     }
   }
-
 }
