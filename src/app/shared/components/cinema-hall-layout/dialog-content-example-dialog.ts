@@ -64,7 +64,7 @@ export class DialogContentExampleDialog {
           movie_title: ultimo?.title,
           movie_date: ultimo?.freserva,
           fullName: ultimo?.fullName,
-          email: 'mbakalitahiri@hotmail.com',
+          email: localStorage.getItem('email'),
         };
         //tengo userID y showID, tengo que conseguir el bookingID
         this.bookingSvc.getEmailBooking(data).subscribe((data: any) => {});
