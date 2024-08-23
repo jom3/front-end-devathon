@@ -29,9 +29,11 @@
       } }
     </section>
   </div>
+
   <div class="movie-page__container">
     <router-outlet />
-    <div class="mat-elevation-z8">
+
+    <div class="mat-elevation-z8" *ngIf="dataSource.data.length; else noData">
       <table mat-table [dataSource]="dataSource">
         <!-- Position Column -->
         <ng-container matColumnDef="title">
@@ -92,4 +94,11 @@
       </mat-paginator>
     </div>
   </div>
+  @if (dataSource.data.length > 0) { }
 </div>
+
+<ng-template #noData>
+  <p>
+    Disculpenos, actualmente no disponimos de programacion para esta pelicula
+  </p>
+</ng-template>

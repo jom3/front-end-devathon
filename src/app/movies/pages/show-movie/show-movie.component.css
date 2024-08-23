@@ -49,3 +49,8 @@ td {
 th {
   color: white;
 }
+
+p {
+  text-align: center;
+  font-size: large;
+}
