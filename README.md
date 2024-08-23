@@ -10,9 +10,7 @@ Este proyecto fue realizado con angular version 18, con el propósito de simular
 2. [Instalación](#instalación)
 3. [Uso](#uso)
 4. [Deployment](#deployment)
-7. [Contribución](#contribución)
-8. [Licencia](#licencia)
-9. [Autores y Reconocimientos](#autores-y-reconocimientos)
+5. [Autores y Reconocimientos](#autores-y-reconocimientos)
 10. [Contactos y Soporte](#contactos-y-soporte)
 
 ## Instalación
@@ -67,16 +65,33 @@ export const environment = {
 
 ## Deployment
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Ejecuta el script `ng build` para realizar la compilación del proyecto. El producto de la compilación del proyecto estará en la carpeta `dist/`.
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Autores y Reconocimientos
 
-## Running end-to-end tests
+### Github
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- [`mbakalitahiri`](https://github.com/mbakalitahiri)
 
-## Further help
+- [`jom3`](https://github.com/jom3)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- [`wjmmk`](https://github.com/wjmmk)
+
+- [`EumT07`](https://github.com/EumT07)
+
+- [`ComikSama`](https://github.com/ComikSama)
+
+### LinkedIn
+
+- [`mbakalitahiri`](https://www.linkedin.com/in/tedy-bakali-05593130/)
+
+- [`jom3`](https://www.linkedin.com/in/joams-mogro-gomez-442691103/)
+
+- [`wjmmk`](https://www.linkedin.com/in/william~mosquera/)
+
+- [`EumT07`](https://www.linkedin.com/in/eublan-mata/)
+
+- [`ComikSama`](www.linkedin.com/in/christian-tapia-araya/)
+
+## Contactos y Soporte
