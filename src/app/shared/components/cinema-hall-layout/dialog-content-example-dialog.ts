@@ -35,13 +35,28 @@ export class DialogContentExampleDialog {
       showID: this.data.showID,
     };
     this.cinemaHallSvc
-      .updateSeatStatus(this.data.showID, payload)
-      .subscribe((data: any) => {
-        console.log(data);
-      });
+      .updateSeatStatus(payload.showID, payload)
+      .subscribe((data: any) => {});
 
     this.bookingSvc.setBooking(payload).subscribe((data: any) => {
       this.dialogRef.close({ data: true });
     });
+
+    this.bookingSvc
+      .getBookingById(payload.userID, this.data.showID)
+      .subscribe((data: any) => {
+        data = {
+          boodingId: data[data.length - 1].bookingID,
+          start_hour: data[data.length - 1].horapelicula,
+          movie_title: data[data.length - 1].title,
+          movie_date: data[data.length - 1].freserva,
+          fullName: data[data.length - 1].fullName,
+          email: 'mbakalitahiri@hotmail.com',
+        };
+
+        //tengo userID y showID, tengo que conseguir el bookingID
+
+        this.bookingSvc.getEmailBooking(data).subscribe((data: any) => {});
+      });
   }
 }

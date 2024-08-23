@@ -6,7 +6,7 @@
 
   <mat-card-content>
     <div class="mat-elevation-z8">
-      <table mat-table [dataSource]="dataSource">
+      <table mat-table [dataSource]="dataSource" #ßpdfTable>
         <!-- Position Column -->
         <ng-container matColumnDef="avatar">
           <th mat-header-cell *matHeaderCellDef>#</th>
@@ -84,3 +84,7 @@
   </mat-card-content>
 </mat-card>
 <br />
+
+<div>
+  <button (click)="downloadAsPDF()" mat-raised-button>Export To PDF</button>
+</div>

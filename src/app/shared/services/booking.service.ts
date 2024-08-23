@@ -16,4 +16,20 @@ export class BookingService {
   getConfirmedBookings() {
     return this.http.get(`${this.baseUrl}/bookings/payed`);
   }
+
+  sendEmailBooking(booking: any) {
+    return this.http.post(`${this.baseUrl}/emails/confirm`, booking);
+  }
+
+  getBookingById(userID: string, showID: number) {
+    return this.http.get(`${this.baseUrl}/bookings/${userID}/${showID}`);
+  }
+
+  getBookingDetails(userID: string, showID: number) {
+    return this.http.get(`${this.baseUrl}/bookings/${userID}/${showID}`);
+  }
+
+  getEmailBooking(booking: any) {
+    return this.http.post(`${this.baseUrl}/email`, booking);
+  }
 }
