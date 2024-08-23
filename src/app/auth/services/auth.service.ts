@@ -45,7 +45,6 @@ export class AuthService {
 
   getCurrentUser() {
     const email = localStorage.getItem('email');
-    console.log(email);
     return this.http.get<User>(`${this.baseUrl}/users/findUser/${email}`);
   }
 }

@@ -21,7 +21,6 @@ export class CinemaHallService {
       .get<any>(this.apiUrl + '/cinema-seats')
       .pipe(
         map((res: CinemaHall[]) => {
-          console.log(res);
           res.forEach((element: any) => {
             if (element.type === 'VIP') {
               const numasiento = element.cinemaSeatID;
@@ -108,7 +107,6 @@ export class CinemaHallService {
     let result = position.split('');
     let fila = result[0];
     let columna = result[1];
-    console.log(fila, columna);
 
     let filaIndex = this.letrasAbecera.indexOf(fila);
     let columnaIndex = this.numeros.indexOf(Number(columna));
