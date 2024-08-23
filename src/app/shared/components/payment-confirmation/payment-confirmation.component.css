@@ -33,23 +33,20 @@ body {
   line-height: 23px;
 }
 
-/*.success-message__icon {
+.success-message__icon {
   width: 75px;
   height: 75px;
-  background: #00C753;
-  margin:0 auto;
+  margin: 0 auto;
   border-radius: 50%;
 }
 
-
-.success-message__icon-wrap{
+.success-message__icon-wrap {
   width: 100px;
   height: 100px;
-  background:#ccf4dd;
+  background: #ccf4dd;
   border-radius: 50%;
+  padding-bottom: 20px;
 }
-*/
-
 .success-message__link {
   display: flex;
   flex-direction: row;
