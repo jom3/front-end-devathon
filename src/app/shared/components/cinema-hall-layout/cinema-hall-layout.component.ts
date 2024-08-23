@@ -218,6 +218,8 @@ export class CinemaHallLayoutComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
+      this.router.navigate(['/payment-success']);
+
       console.log(`Dialog result: ${result}`);
       this.selectedSeats = [];
       this.total = 0;
