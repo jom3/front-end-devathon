@@ -59,7 +59,7 @@ export class DialogContentExampleDialog {
         console.log('ultimo booking ', data);
 
         data = {
-          boodingId: ultimo?.bookingID,
+          boodingId: ultimo?.bookingID + 1,
           start_hour: ultimo?.horapelicula,
           movie_title: ultimo?.title,
           movie_date: ultimo?.freserva,
