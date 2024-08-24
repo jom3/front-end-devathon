@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 import { User } from '../models/user.interface';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
@@ -16,15 +16,19 @@ export class AuthService {
   private readonly http = inject(HttpClient);
   private baseUrl = environment.baseUrl;
 
-  constructor( private readonly oauthService: OAuthService) {
+  constructor(private readonly oauthService: OAuthService) {
     this.initLoginGoogle();
   }
 
   //Conexion con el Backend de Slow Movies
   signUp(user: User): Observable<string> {
+    localStorage.setItem('email', user?.email);
     return this.http
-      .post<TokenResponse>(`${this.baseUrl}/auth/signup`, user)
-      .pipe(map((response: TokenResponse) => response.token));
+      .post<TokenResponse>('http://localhost:8080/api/auth/signup', user)
+      .pipe(
+        tap(console.log),
+        map((response: TokenResponse) => response.token)
+      );
   }
 
   signIn(email: string, password: string): Observable<string> {
@@ -46,6 +50,7 @@ export class AuthService {
   }
 
   getCurrentUser() {
+    debugger;
     const email = localStorage.getItem('email');
     return this.http.get<User>(`${this.baseUrl}/users/findUser/${email}`);
   }
@@ -57,14 +62,14 @@ export class AuthService {
       strictDiscoveryDocumentValidation: false,
       clientId: environment.googleClientId,
       redirectUri: window.location.origin,
-      scope: 'openid profile email'
-    }
+      scope: 'openid profile email',
+    };
     this.oauthService.configure(googleConfig);
     this.oauthService.setupAutomaticSilentRefresh();
     this.oauthService.loadDiscoveryDocumentAndTryLogin();
 
     const resp = this.getMetadataUserGoogle();
-    console.log(resp)
+    console.log(resp);
   }
 
   loginWithGoogle() {
@@ -81,6 +86,13 @@ export class AuthService {
 
   googleRegistration(): Observable<any> {
     const token = sessionStorage.getItem('id_token');
-    return this.http.post(`${this.baseUrl}/auth/google/validate`, {token: token});
+    return this.http.post(`${this.baseUrl}/auth/google/validate`, {
+      token: token,
+    });
+  }
+  logout() {
+    localStorage.removeItem('email');
+    localStorage.removeItem('token');
+    this.oauthService.logOut();
   }
 }
