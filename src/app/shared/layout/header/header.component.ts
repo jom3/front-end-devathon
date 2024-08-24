@@ -5,6 +5,8 @@ import { Router, RouterLink } from '@angular/router';
 import { JwtService } from '../../services';
 import { NgClass } from '@angular/common';
 import { MaterialModule } from '../../modules/material/material.module';
+import { OAuthService } from 'angular-oauth2-oidc';
+import { AuthService } from '../../../auth/services';
 
 @Component({
   selector: 'app-header',
@@ -13,37 +15,41 @@ import { MaterialModule } from '../../modules/material/material.module';
   standalone: true,
   imports: [MaterialModule, RouterLink, NgClass],
 })
-
 export class HeaderComponent {
-  public isHidden = signal<boolean>(true)
-  public isLogged = signal<boolean>(false)
+  public isHidden = signal<boolean>(true);
+  public isLogged = signal<boolean>(false);
 
   readonly dialog = inject(MatDialog);
-  readonly jwtSvc = inject(JwtService)
-  readonly router = inject(Router)
+  readonly jwtSvc = inject(JwtService);
+  readonly router = inject(Router);
+  readonly auththSvc = inject(AuthService);
 
-  constructor(){
-    effect(()=>{
-      this.isLogged.set(this.jwtSvc.isLogged())
-    },{
-      allowSignalWrites:true
-    })
+  constructor() {
+    effect(
+      () => {
+        this.isLogged.set(this.jwtSvc.isLogged());
+      },
+      {
+        allowSignalWrites: true,
+      }
+    );
   }
 
   openLoginDialog() {
-    this.isHidden.set(true)
-    this.dialog.open(LoginDialogComponent,{
-      width:'400px',
+    this.isHidden.set(true);
+    this.dialog.open(LoginDialogComponent, {
+      width: '400px',
     });
   }
 
-  onLogout(){
-    this.jwtSvc.removeToken()
-    this.isHidden.set(true)
-    this.router.navigate(['/'])
+  onLogout() {
+    this.auththSvc.logout();
+    this.jwtSvc.removeToken();
+    this.isHidden.set(true);
+    this.router.navigate(['/']);
   }
 
-  onToggle(){
-    this.isHidden.set(!this.isHidden())
+  onToggle() {
+    this.isHidden.set(!this.isHidden());
   }
 }

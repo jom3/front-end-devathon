@@ -23,6 +23,7 @@
           class="input-form"
           formControlName="fullName"
           required
+          value="Of Course is John Doe"
         />
         @if (this.registerForm.controls.fullName.getError('required') && this.registerForm.get('fullName')?.touched) {
           <mat-error>El campo es requerido</mat-error>
@@ -35,6 +36,7 @@
             matInput
             class="input-form"
             formControlName="dni"
+            value="12345678"
           />
         </mat-form-field>
         <mat-form-field>
@@ -55,6 +57,7 @@
           <input
             matInput
             formControlName="phone"
+            value="123456789"
           />
         </mat-form-field>
         <mat-form-field>
@@ -79,6 +82,7 @@
             class="input-form"
             formControlName="email"
             required
+            value="mohtadibak@hotmail.com"
           />
           @if (this.registerForm.controls.email.getError('required') && this.registerForm.controls.email.touched) {
             <mat-error>El campo es requerido</mat-error>
