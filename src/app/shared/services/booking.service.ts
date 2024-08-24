@@ -10,26 +10,26 @@ export class BookingService {
   private http = inject(HttpClient);
 
   setBooking(booking: any) {
-    return this.http.post(`${this.baseUrl}/bookings`, booking);
+    return this.http.post(`/api/bookings`, booking);
   }
 
   getConfirmedBookings() {
-    return this.http.get(`${this.baseUrl}/bookings/payed`);
+    return this.http.get(`/api/bookings/payed`);
   }
 
   sendEmailBooking(booking: any) {
-    return this.http.post(`${this.baseUrl}/emails/confirm`, booking);
+    return this.http.post(`/api/emails/confirm`, booking);
   }
 
   getBookingById(userID: string, showID: number) {
-    return this.http.get(`${this.baseUrl}/bookings/${userID}/${showID}`);
+    return this.http.get(`/api/bookings/${userID}/${showID}`);
   }
 
   getBookingDetails(userID: string, showID: number) {
-    return this.http.get(`${this.baseUrl}/bookings/${userID}/${showID}`);
+    return this.http.get(`/api/bookings/${userID}/${showID}`);
   }
 
   getEmailBooking(booking: any) {
-    return this.http.post(`${this.baseUrl}/email`, booking);
+    return this.http.post(`/api/email`, booking);
   }
 }

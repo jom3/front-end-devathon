@@ -18,7 +18,7 @@ export class CinemaHallService {
 
   getCinemaHallSeats() {
     return this.http
-      .get<any>(this.apiUrl + '/cinema-seats')
+      .get<any>('/api/cinema-seats')
       .pipe(
         map((res: CinemaHall[]) => {
           res.forEach((element: any) => {
@@ -89,18 +89,14 @@ export class CinemaHallService {
 
   //muestra el numero de plazas libres para un especifico showID
   showSeatsAvailable(id: number) {
-    return this.http.get<any>(this.apiUrl + '/shows/showSeatsAvailable/' + id);
+    return this.http.get<any>('/api/shows/showSeatsAvailable/' + id);
   }
   showSeatsNotAvailable(id: number) {
-    return this.http.get<any>(
-      this.apiUrl + '/shows/showSeatsNotAvailable/' + id
-    );
+    return this.http.get<any>('/api/shows/showSeatsNotAvailable/' + id);
   }
 
   getSeatsPriceByShowId(id: number) {
-    return this.http.get<any>(
-      this.apiUrl + '/shows/getShowSeatsPricesByShow/' + id
-    );
+    return this.http.get<any>('/api/shows/getShowSeatsPricesByShow/' + id);
   }
 
   getNaturalNumberFromSeatPosition(position: string) {
@@ -115,9 +111,6 @@ export class CinemaHallService {
   }
 
   updateSeatStatus(id: number, body: any) {
-    return this.http.patch<any>(
-      this.apiUrl + '/shows/updateSeatStatus/' + id,
-      body
-    );
+    return this.http.patch<any>('/api/shows/updateSeatStatus/' + id, body);
   }
 }
