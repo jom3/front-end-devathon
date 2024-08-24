@@ -23,36 +23,34 @@ export class AuthService {
   //Conexion con el Backend de Slow Movies
   signUp(user: User): Observable<string> {
     localStorage.setItem('email', user?.email);
-    return this.http
-      .post<TokenResponse>('http://localhost:8080/api/auth/signup', user)
-      .pipe(
-        tap(console.log),
-        map((response: TokenResponse) => response.token)
-      );
+    return this.http.post<TokenResponse>(`/api/auth/signup`, user).pipe(
+      tap(console.log),
+      map((response: TokenResponse) => response.token)
+    );
   }
 
   signIn(email: string, password: string): Observable<string> {
     localStorage.setItem('email', email);
     return this.http
-      .post<TokenResponse>(`${this.baseUrl}/auth/signin`, { email, password })
+      .post<TokenResponse>(`/api/auth/signin`, { email, password })
       .pipe(map((response: TokenResponse) => response.token));
   }
 
   recoverPassword(email: string) {
-    return this.http.post(`${this.baseUrl}/auth/recoverypass`, { email });
+    return this.http.post(`/api/auth/recoverypass`, { email });
   }
 
   changePassword(id: string, newPassword: string, newConfirmPassword: string) {
-    return this.http.patch(
-      `${this.baseUrl}/auth/recoverypass/resetpassword/${id}`,
-      { newPassword, newConfirmPassword }
-    );
+    return this.http.patch(`/api/auth/recoverypass/resetpassword/${id}`, {
+      newPassword,
+      newConfirmPassword,
+    });
   }
 
   getCurrentUser() {
     debugger;
     const email = localStorage.getItem('email');
-    return this.http.get<User>(`${this.baseUrl}/users/findUser/${email}`);
+    return this.http.get<User>(`/api/users/findUser/${email}`);
   }
 
   //Conexion Oauth_Google
@@ -86,7 +84,7 @@ export class AuthService {
 
   googleRegistration(): Observable<any> {
     const token = sessionStorage.getItem('id_token');
-    return this.http.post(`${this.baseUrl}/auth/google/validate`, {
+    return this.http.post(`/api/auth/google/validate`, {
       token: token,
     });
   }
