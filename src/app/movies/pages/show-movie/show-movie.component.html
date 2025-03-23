@@ -33,7 +33,10 @@
   <div class="movie-page__container">
     <router-outlet />
 
-    <div class="mat-elevation-z8" *ngIf="dataSource.data.length; else noData">
+    <div
+      class="mat-elevation-z8"
+      *ngIf="dataSource.data.length > 0; else noData"
+    >
       <table mat-table [dataSource]="dataSource">
         <!-- Position Column -->
         <ng-container matColumnDef="title">

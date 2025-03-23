@@ -1,40 +1,110 @@
-<aside class="sidenav__container" (mouseleave)="onToggle()" [ngClass]="{'sidenav__container-show': isHidden()==false}">
+<aside
+  class="sidenav__container"
+  (mouseleave)="onToggle()"
+  [ngClass]="{ 'sidenav__container-show': isHidden() == false }"
+>
   <nav class="sidenav">
-    <a class="sidenav__item" (click)="onToggle()" [routerLink]="['/']">CARTELERA</a>
-    <a class="sidenav__item" (click)="onToggle()" [routerLink]="['/movies']">PELÍCULAS</a>
+    <a class="sidenav__item" (click)="onToggle()" [routerLink]="['/']"
+      >CARTELERA</a
+    >
+    <a class="sidenav__item" (click)="onToggle()" [routerLink]="['/movies']"
+      >PELÍCULAS</a
+    >
     <a class="sidenav__item" (click)="onToggle()">PROMOCIONES</a>
     <a class="sidenav__item" (click)="onToggle()">GOLOSINAS</a>
-    <a class="sidenav__item nav-button__item" (click)="onToggle()">CLUB <br> ALFAJOR</a>
+    <a class="sidenav__item nav-button__item" (click)="onToggle()"
+      >CLUB <br />
+      ALFAJOR</a
+    >
   </nav>
   <div class="sidenav__buttons">
-  @if (isLogged()) {
-    <button mat-flat-button color="warn" class="sidenav__button" (click)="onLogout()">Cerrar sesión</button>
-   } @else {
-      <button mat-flat-button color="primary" class="sidenav__button" (click)="onToggle()" [routerLink]="['/auth/register']">REGISTRARSE</button>
-      <button mat-flat-button color="warn" class="sidenav__button" (click)="openLoginDialog()">INICIAR SESIÓN</button>
+    @if (isLogged()) {
+    <button
+      mat-flat-button
+      color="warn"
+      class="sidenav__button"
+      (click)="onLogout()"
+    >
+      Cerrar sesión
+    </button>
+    } @else {
+    <button
+      mat-flat-button
+      color="primary"
+      class="sidenav__button"
+      (click)="onToggle()"
+      [routerLink]="['/auth/register']"
+    >
+      REGISTRARSE
+    </button>
+    <button
+      mat-flat-button
+      color="warn"
+      class="sidenav__button"
+      (click)="openLoginDialog()"
+    >
+      INICIAR SESIÓN
+    </button>
     }
   </div>
 </aside>
 
 <header class="navbar__container">
   <section [routerLink]="['/']" class="navbar-logo__container">
-    <img src="/images/logo.svg" alt="logo" class="navbar__logo">
-    <span class="navbar__title">SLOW <br> MOVIE</span>
+    <img src="/images/logo.svg" alt="logo" class="navbar__logo" />
+    <span class="navbar__title"
+      >SLOW <br />
+      MOVIE</span
+    >
   </section>
-  <button class="menu-button__container" (click)="onToggle()" ><img src="/icons/menu.svg" alt=""></button>
+  <button class="menu-button__container" (click)="onToggle()">
+    <img src="/icons/menu.svg" alt="" />
+  </button>
   <nav class="navbar__nav">
     <a href="" class="nav__item" [routerLink]="['/']">Cartelera</a>
     <a href="" class="nav__item" [routerLink]="['/movies']">Películas</a>
     <a href="" class="nav__item">Promociones</a>
-    <a href="" class="nav__item">Golosinas</a>
-    <a class=" nav__item nav-button__item"><span>Club <br> Alfajor</span></a>
+    <a
+      href=""
+      class="nav__item"
+      [routerLink]="['/golosinas']"
+      [routerLinkActive]="['active']"
+      >Golosinas</a
+    >
+    <!-- <a class="nav__item nav-button__item"
+      ><span
+        >Club <br />
+        Alfajor</span
+      ></a
+    > -->
   </nav>
   <div class="nav__buttons">
     @if (isLogged()) {
-      <button mat-flat-button color="warn" class="nav__button" (click)="onLogout()">Cerrar sesión</button>
-     } @else {
-        <button mat-flat-button color="primary" class="nav__button" [routerLink]="['/auth/register']">Registrarse</button>
-        <button mat-flat-button color="accent" class="nav__button" (click)="openLoginDialog()">Iniciar Sesión</button>
-      }
-    </div>
+    <button
+      mat-flat-button
+      color="warn"
+      class="nav__button"
+      (click)="onLogout()"
+    >
+      Cerrar sesión
+    </button>
+    } @else {
+    <button
+      mat-flat-button
+      color="primary"
+      class="nav__button"
+      [routerLink]="['/auth/register']"
+    >
+      Registrarse
+    </button>
+    <button
+      mat-flat-button
+      color="accent"
+      class="nav__button"
+      (click)="openLoginDialog()"
+    >
+      Iniciar Sesión
+    </button>
+    }
+  </div>
 </header>

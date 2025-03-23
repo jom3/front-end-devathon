@@ -16,11 +16,9 @@ export class SearchService {
   private readonly http = inject(HttpClient);
 
   getNowPlayingMovies(moviID: any): Observable<Movie[]> {
-    return this.http
-      .get<any>(`http://localhost:8080/api/shows/search/${moviID}`)
-      .pipe(
-        map((result: any) => result),
-        tap(console.log)
-      );
+    return this.http.get<any>(`/api/shows/search/${moviID}`).pipe(
+      map((result: any) => result),
+      tap(console.log)
+    );
   }
 }

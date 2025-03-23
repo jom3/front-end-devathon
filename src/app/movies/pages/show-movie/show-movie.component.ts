@@ -89,6 +89,7 @@ export class ShowMovieComponent implements AfterViewInit {
     const id = this.movieId;
     this.dataSource.paginator = this.paginator;
     this.searchService.getNowPlayingMovies(id()).subscribe((r) => {
+      debugger;
       this.dataSource.data = r;
     });
   }

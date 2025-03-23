@@ -1,10 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
-:root{
-  --primary:#373F51;
+:root {
+  --primary: #373f51;
   --primary-text: #000000;
   --font-text: Roboto, "Helvetica Neue", sans-serif;
-
 }
 
 html,

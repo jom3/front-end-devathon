@@ -9,5 +9,6 @@ export const environment = {
   baseUrl: 'http://127.0.0.1:8080/api', // 'http://localhost:8080/api',
 
   //* Google Server
-  googleClientId: '264316509721-qcg4720kqj4k104mqk4ojlljfch4vvh9.apps.googleusercontent.com'
+  googleClientId:
+    '264316509721-qcg4720kqj4k104mqk4ojlljfch4vvh9.apps.googleusercontent.com',
 };

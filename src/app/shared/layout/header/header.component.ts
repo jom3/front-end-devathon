@@ -1,7 +1,7 @@
 import { Component, effect, inject, signal } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { LoginDialogComponent } from '../../../auth';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { JwtService } from '../../services';
 import { NgClass } from '@angular/common';
 import { MaterialModule } from '../../modules/material/material.module';
@@ -13,7 +13,7 @@ import { AuthService } from '../../../auth/services';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
   standalone: true,
-  imports: [MaterialModule, RouterLink, NgClass],
+  imports: [MaterialModule, RouterLink, NgClass, RouterLinkActive],
 })
 export class HeaderComponent {
   public isHidden = signal<boolean>(true);

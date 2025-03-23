@@ -39,6 +39,13 @@ export const routes: Routes = [
       ).then((m) => m.PaymentConfirmationComponent),
   },
   {
+    path: 'golosinas',
+    loadComponent: () =>
+      import('./shared/components/golosinas/golosinas.component').then(
+        (m) => m.GolosinasComponent
+      ),
+  },
+  {
     path: '**',
     redirectTo: '/',
     pathMatch: 'full',
